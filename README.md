@@ -1,5 +1,7 @@
 # bxshell - All the Bluemix tools I need in one Docker image and a few shell scripts
 
+[![Build Status](https://travis-ci.org/l2fprod/bxshell.svg)](https://travis-ci.org/l2fprod/bxshell)
+
 **bxshell** has one Docker image where the Bluemix CLI and its plugin have been preinstalled together with the CLI to work with containers. It also provides a script to start the Docker image and to mount configuration directories into the image.
 
 ---
