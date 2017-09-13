@@ -41,6 +41,9 @@ RUN chmod +x /usr/local/bin/kubectl
 RUN (cd /usr/local && curl -L https://git.io/getIstio | sh - )
 RUN ln -s /usr/local/istio* /usr/local/istio
 
+# Helm
+RUN curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
+
 # Expose configuration to be overriden
 RUN mkdir -p /root/mnt/config
 
