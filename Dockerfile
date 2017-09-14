@@ -70,6 +70,10 @@ RUN ln -s /root/mnt/config/container-service/clusters /root/.bluemix/plugins/con
 RUN mkdir /root/mnt/config/helm
 RUN ln -s /root/mnt/config/helm /root/.helm
 
+# Docker configuration
+RUN mkdir /root/mnt/config/docker
+RUN ln -s /root/mnt/config/docker /root/.docker
+
 VOLUME /root/mnt/config
 
 # User files
