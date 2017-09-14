@@ -1,14 +1,19 @@
 FROM ubuntu:16.04
 RUN apt-get -qq update
-RUN apt-get -qq install -y curl figlet wget sudo nano jq apt-transport-https
-
-# Docker in Docker
-RUN apt-get -qq remove docker docker-engine docker.io
 RUN apt-get -qq install -y \
   apt-transport-https \
   ca-certificates \
   curl \
-  software-properties-common
+  figlet \
+  inetutils-ping \
+  jq \
+  nano \
+  software-properties-common \
+  sudo \
+  wget
+
+# Docker in Docker
+RUN apt-get -qq remove docker docker-engine docker.io
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 RUN add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \

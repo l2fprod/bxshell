@@ -19,15 +19,20 @@ export PS1="\[$reset\]\
 bxshell[\
 $bold\
 (\$BXSHELL_TARGET) \
-\$(cat ~/.bluemix/config.json | jq .Region -r)>\
-\$(cat ~/.bluemix/.cf/config.json | jq .OrganizationFields.Name -r | cut -c1-5)>\
+\$(cat ~/.bluemix/config.json | jq .Region -r) > \
+\$(cat ~/.bluemix/.cf/config.json | jq .OrganizationFields.Name -r) > \
 \$(cat ~/.bluemix/.cf/config.json | jq .SpaceFields.Name -r)\
 $reset\
-] \w> "
+]\
+\n\
+\w> "
 
 # Bluemix CLI
 bx plugin repo-add Bluemix https://plugins.ng.bluemix.net
+
+# Useful aliases
 alias bxlogin='bx login --apikey "$BLUEMIX_API_KEY" -o "$BLUEMIX_ORG" -s "$BLUEMIX_SPACE"'
+alias kubeproxy='echo Open your browser at http://$(docker port $CONTAINER_NAME 8001)/ui && kubectl proxy --accept-hosts='.*' --address='0.0.0.0''
 
 # Istio
 export PATH="$PATH:/usr/local/istio/bin"
