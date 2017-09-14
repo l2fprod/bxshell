@@ -27,10 +27,10 @@
 
 1. Ensure your Docker engine is running
 
-1. Start the shell for an environment with `bxenv.sh <env_name>`
+1. Start the shell for an environment with `bxshell.sh <env_name>`
 
    ```
-   bxenv.sh us-south
+   bxshell.sh us-south
    ```
 
    This retrieves the **bxshell** Docker image and starts a container.
@@ -39,13 +39,13 @@
 
 On your host, **bxshell** stores configuration files under `$HOME/.bxshell` where it creates one subfolder per environment. Under these folders, you'll find several configuration files created by the Docker container as you use the various Bluemix CLI and other scripts there.
 
-Use `bxenv.sh <env_name>` to start a new shell on the environment `env_name`. Environment name is arbitrary. You can use any name. This is only a way to keep configuration files together.
+Use `bxshell.sh <env_name>` to start a new shell on the environment `env_name`. Environment name is arbitrary. You can use any name. This is only a way to keep configuration files together.
 
-`bxenv.sh` calls `bxshell.sh` which in turn runs the Docker container interactively. The container will die when you quit the shell.
+`bxshell.sh` calls `_bxshell.sh` which in turn runs the Docker container interactively. The container will die when you quit the shell.
 
-`bxshell.sh` starts the Docker container with privileged mode and expose the local Docker socket inside the container so you can build images there too.
+`_bxshell.sh` starts the Docker container with privileged mode and expose the local Docker socket inside the container so you can build images there too.
 
-`bxshell.sh` mounts your $HOME directory and the $HOME/.bxshell/environments directory under /root/mnt in the container. This way you can access your files from within the container.
+`_bxshell.sh` mounts your $HOME directory and the $HOME/.bxshell/environments directory under /root/mnt in the container. This way you can access your files from within the container.
 
 ## Environment Customization
 
