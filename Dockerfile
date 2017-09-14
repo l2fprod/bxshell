@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 RUN apt-get -qq update
-RUN apt-get -qq install -y curl figlet wget sudo jq apt-transport-https
+RUN apt-get -qq install -y curl figlet wget sudo nano jq apt-transport-https
 
 # Docker in Docker
 RUN apt-get -qq remove docker docker-engine docker.io
