@@ -66,6 +66,10 @@ RUN mkdir /root/mnt/config/container-service
 RUN ln -s /root/mnt/config/container-service/config.json /root/.bluemix/plugins/container-service/config.json
 RUN ln -s /root/mnt/config/container-service/clusters /root/.bluemix/plugins/container-service/clusters
 
+# Helm configuration
+RUN mkdir /root/mnt/config/helm
+RUN ln -s /root/mnt/config/helm /root/.helm
+
 VOLUME /root/mnt/config
 
 # User files
