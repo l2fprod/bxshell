@@ -40,4 +40,4 @@ touch $CONFIG_DIR/cf-config.json
 mkdir -p $CONFIG_DIR/container-registry
 mkdir -p $CONFIG_DIR/container-service/clusters
 
-. $DIR/bxshell.sh
+$DIR/bxshell.sh $BMX_TARGET $CONFIG_DIR $HOME

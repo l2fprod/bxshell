@@ -43,3 +43,6 @@ if [ -f ~/mnt/config/.env_profile ]; then
 fi
 
 cat .motd.txt
+
+echo Port mapping at your convenience:
+docker port $CONTAINER_NAME | awk '{print $1 " -> " $3 " -> http://" $3}'
