@@ -60,7 +60,6 @@ The exact list can be found by looking at the [Dockerfile](Dockerfile).
 * jq
 * docker
 * nvm
-* node.js 6.9.1
 * node.js latest
 * Bluemix CLI and cloud-functions, container-registry, container-service, dev, schematics plugins
 * kubectl
