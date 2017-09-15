@@ -32,7 +32,7 @@ bx plugin repo-add Bluemix https://plugins.ng.bluemix.net
 
 # Useful aliases
 alias bxlogin='bx login --apikey "$BLUEMIX_API_KEY" -o "$BLUEMIX_ORG" -s "$BLUEMIX_SPACE"'
-alias kubeproxy='echo Open your browser at http://$(docker port $CONTAINER_NAME 8001)/ui && kubectl proxy --accept-hosts='.*' --address='0.0.0.0''
+alias kubeconsole='echo Open your browser at http://$(docker port $CONTAINER_NAME 8001)/ui && kubectl proxy --accept-hosts='.*' --address='0.0.0.0''
 
 # Istio
 export PATH="$PATH:/usr/local/istio/bin"

@@ -36,5 +36,5 @@
 
 
 Tips:
-Just type 'kubeproxy' to enable the Kubernetes console
+Just type 'kubeconsole' to enable the Kubernetes console
 ---
