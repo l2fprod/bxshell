@@ -30,6 +30,10 @@ $reset\
 # Bluemix CLI
 bx plugin repo-add Bluemix https://plugins.ng.bluemix.net
 
+# Auto completion
+. /usr/local/Bluemix/bx/bash_autocomplete
+source <(kubectl completion bash)
+
 # Useful aliases
 alias bxlogin='bx login --apikey "$BLUEMIX_API_KEY" -o "$BLUEMIX_ORG" -s "$BLUEMIX_SPACE"'
 alias kubeconsole='echo Open your browser at http://$(docker port $CONTAINER_NAME 8001)/ui && kubectl proxy --accept-hosts='.*' --address='0.0.0.0''

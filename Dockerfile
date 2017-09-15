@@ -2,6 +2,7 @@ FROM ubuntu:16.04
 RUN apt-get -qq update
 RUN apt-get -qq install -y \
   apt-transport-https \
+  bash-completion \
   ca-certificates \
   curl \
   figlet \
