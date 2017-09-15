@@ -75,6 +75,10 @@ RUN mkdir /root/mnt/config/container-service
 RUN ln -s /root/mnt/config/container-service/config.json /root/.bluemix/plugins/container-service/config.json
 RUN ln -s /root/mnt/config/container-service/clusters /root/.bluemix/plugins/container-service/clusters
 
+# Bluemix SoftLayer service
+RUN mkdir /root/mnt/config/softlayer
+RUN ln -s /root/mnt/config/softlayer /root/.bluemix/plugins/softlayer
+
 # Helm configuration
 RUN mkdir /root/mnt/config/helm
 RUN ln -s /root/mnt/config/helm /root/.helm

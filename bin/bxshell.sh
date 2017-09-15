@@ -41,5 +41,6 @@ mkdir -p $CONFIG_DIR/container-registry
 mkdir -p $CONFIG_DIR/container-service/clusters
 mkdir -p $CONFIG_DIR/helm
 mkdir -p $CONFIG_DIR/docker
+mkdir -p $CONFIG_DIR/softlayer
 
 $DIR/_bxshell.sh $BMX_TARGET $CONFIG_DIR $HOME
