@@ -24,7 +24,7 @@ else
   export BMX_TARGET=$1
 fi
 
-DIR=$(dirname `python -c "import os; print(os.path.realpath('$0'))"`)
+DIR=$(dirname "`python -c "import os; print(os.path.realpath('$0'))"`")
 echo $DIR
 
 BXSHELL_CONFIG=$HOME/.bxshell
@@ -43,4 +43,4 @@ mkdir -p $CONFIG_DIR/helm
 mkdir -p $CONFIG_DIR/docker
 mkdir -p $CONFIG_DIR/softlayer
 
-$DIR/_bxshell.sh $BMX_TARGET $CONFIG_DIR $HOME
+"$DIR/_bxshell.sh" $BMX_TARGET $CONFIG_DIR $HOME
