@@ -19,9 +19,9 @@ export PS1="\[$reset\]\
 bxshell[\
 $bold\
 (\$BXSHELL_TARGET) \
-\$(cat ~/.bluemix/config.json | jq .Region -r) > \
-\$(cat ~/.bluemix/.cf/config.json | jq .OrganizationFields.Name -r) > \
-\$(cat ~/.bluemix/.cf/config.json | jq .SpaceFields.Name -r)\
+region:\$(cat ~/.bluemix/config.json | jq .Region -r) > \
+org:\$(cat ~/.bluemix/.cf/config.json | jq .OrganizationFields.Name -r) > \
+space:\$(cat ~/.bluemix/.cf/config.json | jq .SpaceFields.Name -r)\
 $reset\
 ]\
 \n\
