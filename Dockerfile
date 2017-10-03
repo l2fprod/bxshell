@@ -47,7 +47,7 @@ RUN mv kubectl /usr/local/bin/kubectl
 RUN chmod +x /usr/local/bin/kubectl
 
 # Istio
-RUN (cd /usr/local && curl -L https://git.io/getIstio | sh - )
+RUN (cd /usr/local && curl -L https://git.io/getLatestIstio | sh -)
 RUN ln -s /usr/local/istio* /usr/local/istio
 
 # Helm
