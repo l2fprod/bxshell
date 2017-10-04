@@ -28,10 +28,10 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # NVM for Node.JS
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
-RUN bash -c 'source /root/.nvm/nvm.sh; nvm install 6.9.1; nvm cache clear'
-
-# Global NPM plugins
-RUN npm install -g serverless serverless-openwhisk --unsafe-perm spawn-sync
+RUN bash -c 'source /root/.nvm/nvm.sh; \
+  nvm install 6.9.1; \
+  npm install -g serverless serverless-openwhisk --unsafe-perm spawn-sync; \
+  nvm cache clear'
 
 # Bluemix CLI
 RUN curl -fsSL https://clis.ng.bluemix.net/install/linux > /tmp/bxinstall.sh
