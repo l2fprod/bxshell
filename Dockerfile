@@ -37,6 +37,7 @@ RUN bash -c 'source /root/.nvm/nvm.sh; \
   nvm install 6.9.1; \
   npm install -g nodemon; \
   npm install -g serverless serverless-openwhisk --unsafe-perm spawn-sync; \
+  serverless slstats -d; \
   nvm cache clear'
 
 # Bluemix CLI
