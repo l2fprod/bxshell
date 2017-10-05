@@ -23,6 +23,11 @@ RUN add-apt-repository \
 RUN apt-get -qq update
 RUN apt-get -qq -y install docker-ce
 
+# Yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
+  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
+  sudo apt-get -qq update && sudo apt-get install -qq -y yarn
+
 # Cleanup
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -30,6 +35,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
 RUN bash -c 'source /root/.nvm/nvm.sh; \
   nvm install 6.9.1; \
+  npm install -g nodemon; \
   npm install -g serverless serverless-openwhisk --unsafe-perm spawn-sync; \
   nvm cache clear'
 
