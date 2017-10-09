@@ -11,7 +11,8 @@ RUN apt-get -qq install -y \
   nano \
   software-properties-common \
   sudo \
-  wget
+  wget \
+  zip unzip
 
 # Docker in Docker
 RUN apt-get -qq remove docker docker-engine docker.io
@@ -36,7 +37,7 @@ RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh
 RUN bash -c 'source /root/.nvm/nvm.sh; \
   nvm install 6.9.1; \
   npm install -g nodemon; \
-  npm install -g serverless serverless-openwhisk --unsafe-perm spawn-sync; \
+  npm install -g serverless serverless-openwhisk@latest --unsafe-perm spawn-sync; \
   serverless slstats -d; \
   nvm cache clear'
 
