@@ -57,3 +57,6 @@ cat .motd.txt
 
 echo Port mapping at your convenience:
 docker port $CONTAINER_NAME | awk '{print $1 " -> " $3 " -> http://" $3}'
+
+# change directory to a directory under the user home dir
+cd $CONTAINER_STARTUP_DIR
