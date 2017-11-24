@@ -1,37 +1,4 @@
-FROM ubuntu:16.04
-RUN apt-get -qq update
-RUN apt-get -qq install -y \
-  apt-transport-https \
-  bash-completion \
-  ca-certificates \
-  curl \
-  figlet \
-  inetutils-ping \
-  jq \
-  nano \
-  software-properties-common \
-  sudo \
-  wget \
-  zip unzip \
-  libgtkextra-dev libgconf2-dev libnss3 libasound2 libxtst-dev libxss1 libx11-xcb1
-
-# Docker in Docker
-RUN apt-get -qq remove docker docker-engine docker.io
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-RUN add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
-RUN apt-get -qq update
-RUN apt-get -qq -y install docker-ce
-
-# Yarn
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
-  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
-  sudo apt-get -qq update && sudo apt-get install -qq -y yarn
-
-# Cleanup
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+FROM l2fprod/bxshell-base:latest
 
 # NVM for Node.JS
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
@@ -42,6 +9,9 @@ RUN bash -c 'source /root/.nvm/nvm.sh; \
   serverless slstats -d; \
   npm install -g @ibm-functions/shell --unsafe-perm; \
   nvm cache clear'
+
+# SoftLayer
+RUN pip install softlayer
 
 # Bluemix CLI
 RUN curl -fsSL https://clis.ng.bluemix.net/install/linux > /tmp/bxinstall.sh
@@ -55,9 +25,9 @@ RUN bx plugin install dev -f -r Bluemix
 RUN bx plugin install schematics -f -r Bluemix
 
 # Kubernetes
-RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-RUN mv kubectl /usr/local/bin/kubectl
-RUN chmod +x /usr/local/bin/kubectl
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
+  mv kubectl /usr/local/bin/kubectl && \
+  chmod +x /usr/local/bin/kubectl
 
 # Istio
 RUN (cd /usr/local && curl -L https://git.io/getLatestIstio | sh -)
