@@ -36,6 +36,7 @@ mkdir -p $CONFIG_DIR
 echo "Environment configuration is $CONFIG_DIR"
 touch $CONFIG_DIR/bx-config.json
 touch $CONFIG_DIR/cf-config.json
+touch $CONFIG_DIR/wsk.props
 
 mkdir -p $CONFIG_DIR/container-registry
 mkdir -p $CONFIG_DIR/container-service/clusters

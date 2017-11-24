@@ -12,7 +12,8 @@ RUN apt-get -qq install -y \
   software-properties-common \
   sudo \
   wget \
-  zip unzip
+  zip unzip \
+  libgtkextra-dev libgconf2-dev libnss3 libasound2 libxtst-dev libxss1 libx11-xcb1
 
 # Docker in Docker
 RUN apt-get -qq remove docker docker-engine docker.io
@@ -39,6 +40,7 @@ RUN bash -c 'source /root/.nvm/nvm.sh; \
   npm install -g nodemon; \
   npm install -g serverless serverless-openwhisk@latest --unsafe-perm spawn-sync; \
   serverless slstats -d; \
+  npm install -g @ibm-functions/shell --unsafe-perm; \
   nvm cache clear'
 
 # Bluemix CLI
@@ -76,6 +78,10 @@ RUN ln -s /root/mnt/config/bx-config.json /root/.bluemix/config.json
 RUN rm /root/.bluemix/.cf/config.json
 RUN touch /root/mnt/config/cf-config.json
 RUN ln -s /root/mnt/config/cf-config.json /root/.bluemix/.cf/config.json
+
+# Bluemix Cloud Functions configuration
+RUN touch /root/mnt/config/wsk.props
+RUN ln -s /root/mnt/config/wsk.props /root/.wskprops
 
 # Bluemix container-registry
 RUN mkdir /root/mnt/config/container-registry

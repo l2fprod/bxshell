@@ -4,7 +4,7 @@
 # $3 is directory to mount as home
 CONTAINER_NAME=bxshell-$1-$RANDOM
 
-# if the user is currently in a directly under the $HOME folder
+# if the user is currently in a directory under the $HOME folder
 # restore this directory when running in the container
 # if not under $HOME, then default to home in the container
 function relpath() {
@@ -18,7 +18,11 @@ else
   CONTAINER_STARTUP_DIR="/root/mnt/home/$RELATIVE_DIR"
 fi
 
-docker pull l2fprod/bxshell
+# don't pull the latest if instructed
+if [ -z "$NO_PULL" ]; then
+  docker pull l2fprod/bxshell
+fi
+
 docker run -i --privileged \
   --name $CONTAINER_NAME \
   -p 0:8001 \

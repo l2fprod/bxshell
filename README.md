@@ -63,11 +63,36 @@ The exact list can be found by looking at the [Dockerfile](Dockerfile).
 * node.js 6.9.1
 * yarn
 * nodemon
-* Bluemix CLI and cloud-functions, container-registry, container-service, dev, schematics plugins
+* Bluemix CLI and cloud-functions, functions shell, container-registry, container-service, dev, schematics plugins
 * kubectl
 * istio
 * helm
 * serverless framework and plugin
+
+## Using X11 apps on macOS
+
+1. Install [XQuartz](https://www.xquartz.org/index.html) X11 server
+
+   ```
+   brew cask install xquartz
+   ```
+
+1. Start XQuartz
+
+1. In XQuartz shell, enable connection on a local IP address accessible by the Docker engine. It can be any IP address or hostname visible from the bxshell container. Here it uses the hostname on the host computer:
+
+   ```
+   echo $HOSTNAME
+   xhost + $HOSTNAME
+   ```
+
+1. Start bxshell and from the shell, export DISPLAY to the host running XQuartz:
+
+   ```
+   export DISPLAY=ip-address_or_hostname:0
+   ```
+
+1. Start your X11 app, it should open on your Mac desktop
 
 ---
 
