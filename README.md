@@ -55,19 +55,19 @@ Under $HOME/.bxshell/<env_name> you can create a .env_profile file to perform ad
 
 The exact list can be found by looking at the [Dockerfile](Dockerfile).
 
-* cURL
-* wget
-* jq
-* docker
-* nvm
-* node.js 6.9.1
-* yarn
-* nodemon
 * Bluemix CLI and cloud-functions, functions shell, container-registry, container-service, dev, schematics plugins
-* kubectl
-* istio
+* cURL
+* docker
 * helm
+* istio
+* jq
+* kubectl
+* node.js 6.9.1
+* nodemon
+* nvm
 * serverless framework and plugin
+* wget
+* yarn
 
 ## Using X11 apps on macOS
 

@@ -39,6 +39,8 @@ alias bxlogin='bx login --apikey "$BLUEMIX_API_KEY" -o "$BLUEMIX_ORG" -s "$BLUEM
 alias kubeconsole='echo Open your browser at http://$(docker port $CONTAINER_NAME 8001)/ui && kubectl proxy --accept-hosts='.*' --address='0.0.0.0''
 alias cf='bx cf'
 alias wsk='bx wsk'
+# split window with activation poll on top
+alias tmuxwsk="tmux new-session \; send-keys 'wsk activation poll' C-m \; split-window -v \;"
 
 # Istio
 export PATH="$PATH:/usr/local/istio/bin"
@@ -53,10 +55,12 @@ if [ -f ~/mnt/config/.env_profile ]; then
   . ~/mnt/config/.env_profile
 fi
 
-cat .motd.txt
+if [ "$SHLVL" == "1" ]; then
+  cat $HOME/.motd.txt
 
-echo Port mapping at your convenience:
-docker port $CONTAINER_NAME | awk '{print $1 " -> " $3 " -> http://" $3}'
+  echo Port mapping at your convenience:
+  docker port $CONTAINER_NAME | awk '{print $1 " -> " $3 " -> http://" $3}'
+fi
 
 # change directory to a directory under the user home dir
 cd $CONTAINER_STARTUP_DIR
