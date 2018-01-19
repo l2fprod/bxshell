@@ -18,10 +18,12 @@ RUN curl -fsSL https://clis.ng.bluemix.net/install/linux > /tmp/bxinstall.sh
 RUN sh /tmp/bxinstall.sh
 
 # Bluemix CLI plugins
+RUN bx plugin install activity-tracker -f -r Bluemix
 RUN bx plugin install cloud-functions -f -r Bluemix
 RUN bx plugin install container-registry -f -r Bluemix
 RUN bx plugin install container-service -f -r Bluemix
 RUN bx plugin install dev -f -r Bluemix
+RUN bx plugin install logging-cli -r Bluemix
 RUN bx plugin install schematics -f -r Bluemix
 
 # Kubernetes
