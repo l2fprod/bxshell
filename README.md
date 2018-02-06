@@ -1,8 +1,8 @@
-# bxshell - All the Bluemix tools I need in one Docker image and a few shell scripts
+# bxshell - All the IBM Cloud tools I need in one Docker image and a few shell scripts
 
 [![Build Status](https://travis-ci.org/l2fprod/bxshell.svg)](https://travis-ci.org/l2fprod/bxshell)
 
-**bxshell** is made of one Docker image where the Bluemix CLI and its plugin have been preinstalled together with the CLI to work with containers. **bxshell** also provides a script to start the Docker image and to mount configuration directories into the image.
+**bxshell** is made of one Docker image where the IBM Cloud CLI and its plugin have been preinstalled together with the CLI to work with containers. **bxshell** also provides a script to start the Docker image and to mount configuration directories into the image.
 
 ![screen.png](./screen.png)
 
@@ -37,7 +37,7 @@
 
 ## How it works
 
-On your host, **bxshell** stores configuration files under `$HOME/.bxshell` where it creates one subfolder per environment. Under these folders, you'll find several configuration files created by the Docker container as you use the various Bluemix CLI and other scripts there.
+On your host, **bxshell** stores configuration files under `$HOME/.bxshell` where it creates one subfolder per environment. Under these folders, you'll find several configuration files created by the Docker container as you use the various IBM Cloud CLI and other scripts there.
 
 Use `bxshell.sh <env_name>` to start a new shell on the environment `env_name`. Environment name is arbitrary. You can use any name. This is only a way to keep configuration files together.
 
@@ -55,7 +55,7 @@ Under $HOME/.bxshell/<env_name> you can create a .env_profile file to perform ad
 
 The exact list can be found by looking at the [Dockerfile](Dockerfile).
 
-* Bluemix CLI and cloud-functions, functions shell, container-registry, container-service, dev, schematics plugins
+* IBM Cloud CLI and cloud-functions, functions shell, container-registry, container-service, dev, schematics plugins
 * cURL
 * docker
 * helm
