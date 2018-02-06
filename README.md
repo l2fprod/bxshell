@@ -62,10 +62,12 @@ The exact list can be found by looking at the [Dockerfile](Dockerfile).
 * istio
 * jq
 * kubectl
+* kubetail
 * node.js 6.9.1
 * nodemon
 * nvm
 * serverless framework and plugin
+* terraform
 * wget
 * yarn
 

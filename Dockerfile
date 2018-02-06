@@ -31,6 +31,11 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s
   mv kubectl /usr/local/bin/kubectl && \
   chmod +x /usr/local/bin/kubectl
 
+# Kubetail
+RUN curl -LO https://raw.githubusercontent.com/johanhaleby/kubetail/master/kubetail && \
+  mv kubetail /usr/local/bin/kubetail && \
+  chmod +x /usr/local/bin/kubetail
+
 # Istio
 RUN (cd /usr/local && curl -L https://git.io/getLatestIstio | sh -)
 RUN ln -s /usr/local/istio* /usr/local/istio
@@ -67,6 +72,16 @@ RUN ln -s /root/mnt/config/container-service/clusters /root/.bluemix/plugins/con
 # Bluemix SoftLayer service
 RUN mkdir /root/mnt/config/softlayer
 RUN ln -s /root/mnt/config/softlayer /root/.bluemix/plugins/softlayer
+
+# IBM provider for Terraform
+RUN curl -LO $(curl -I https://github.com/IBM-Cloud/terraform-provider-ibm/releases/latest | grep Location | awk '{print $2}' | sed 's/tag/download/g' | tr -d '[:space:]')/linux_amd64.zip && \
+  unzip linux_amd64.zip && \
+  rm -f linux_amd64.zip && \
+  mkdir /usr/local/share/terraform && \
+  mv terraform-provider-ibm /usr/local/share/terraform && \
+  echo 'providers { \
+  ibm = "/usr/local/share/terraform/terraform-provider-ibm" \
+}' > /root/.terraformrc
 
 # Helm configuration
 RUN mkdir /root/mnt/config/helm
