@@ -1,0 +1,137 @@
+#!/bin/bash
+while getopts ":thl" opt; do
+  case $opt in
+    t)
+      ARG_TRANSIENT=1
+      ;;
+    h)
+      echo "Usage: bxshell <Options> environment
+
+Options:
+  -t    Run a transient shell, all settings will be lost on exit
+  -l    Do not pull the latest bxshell image from Docker Hub
+  -h    Show this help
+      "
+      exit
+      ;;
+    l)
+      ARG_SKIP_PULL=1
+      ;;
+    \?)
+      echo "Invalid Option: -$OPTARG" 1>&2
+      ;;
+  esac
+done
+shift $((OPTIND -1))
+
+# capture the first arg as the target name
+export BMX_TARGET=$1
+
+function select_target() {
+  echo "Please choose a target:"
+  select target in "US" "London" "Frankfurt" "Sydney" "Exit"; do
+    case $target in
+    "US" )
+      export BMX_TARGET=ng
+      break;;
+    "London" )
+      export BMX_TARGET=eu-gb
+      break;;
+    "Frankfurt" )
+      export BMX_TARGET=eu-de
+      break;;
+    "Sydney" )
+      export BMX_TARGET=au-syd
+      break;;
+    "Exit" )
+      exit;;
+    esac
+  done
+}
+
+function pull_latest_image() {
+  # don't pull the latest if instructed
+  if [ -z "$ARG_SKIP_PULL" ]; then
+    echo "Pulling latest image from registry. You can skip this with -l on the command line."
+    docker pull l2fprod/bxshell
+  fi
+}
+
+# if the user is currently in a directory under the $HOME folder
+# restore this directory when running in the container
+# if not under $HOME, then default to home in the container
+function relpath() {
+  python -c "import os,sys;print(os.path.relpath(*(sys.argv[1:])))" "$@";
+}
+
+function run_persistent_container() {
+  # pick a target name
+  if [ -z "$BMX_TARGET" ]
+  then
+    select_target
+  fi
+
+  # prepare our local environment directory
+  BXSHELL_CONFIG=$HOME/.bxshell
+  mkdir -p $BXSHELL_CONFIG
+
+  export CONFIG_DIR=$BXSHELL_CONFIG/environments/$BMX_TARGET
+  mkdir -p $CONFIG_DIR
+  echo "Environment configuration is $CONFIG_DIR"
+  touch $CONFIG_DIR/bx-config.json
+  touch $CONFIG_DIR/cf-config.json
+  touch $CONFIG_DIR/wsk.props
+
+  mkdir -p $CONFIG_DIR/container-registry
+  mkdir -p $CONFIG_DIR/container-service/clusters
+  mkdir -p $CONFIG_DIR/helm
+  mkdir -p $CONFIG_DIR/docker
+  mkdir -p $CONFIG_DIR/softlayer
+
+  RELATIVE_DIR="$(relpath $PWD $HOME)"
+  if [[ $RELATIVE_DIR == .* ]];
+  then
+    CONTAINER_STARTUP_DIR=/root/mnt/home
+  else
+    CONTAINER_STARTUP_DIR="/root/mnt/home/$RELATIVE_DIR"
+  fi
+
+  pull_latest_image
+
+  # start the container
+  CONTAINER_NAME=bxshell-$BMX_TARGET-$RANDOM
+  docker run -i --privileged \
+    --name $CONTAINER_NAME \
+    -p 0:8001 \
+    -p 0:8080 \
+    -p 0:9080 \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -e BXSHELL_TARGET=$BMX_TARGET \
+    -e CONTAINER_NAME=$CONTAINER_NAME \
+    -e CONTAINER_STARTUP_DIR="$CONTAINER_STARTUP_DIR" \
+    -v $CONFIG_DIR:/root/mnt/config \
+    -v $HOME:/root/mnt/home \
+    -t l2fprod/bxshell
+}
+
+function run_transient_container() {
+  pull_latest_image
+
+  CONTAINER_NAME=bxshell-transient-$RANDOM
+  docker run -i --privileged \
+    --name $CONTAINER_NAME \
+    -p 0:8001 \
+    -p 0:8080 \
+    -p 0:9080 \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -e BXSHELL_TARGET=__transient__ \
+    -e CONTAINER_NAME=$CONTAINER_NAME \
+    -t l2fprod/bxshell
+}
+
+if [ "$ARG_TRANSIENT" ]
+then
+  run_transient_container
+else
+  run_persistent_container
+fi

@@ -13,7 +13,7 @@
 * Python 2.7.10
 * Docker Engine
 
-> Tested on macOS Sierra 10.12.6 with Docker 17.06.1-ce-mac24 (18950)
+> Tested on macOS Sierra 10.12.6 with Docker Version 17.12.0-ce-mac49 (21995)
 
 ## Install
 
@@ -27,10 +27,10 @@
 
 1. Ensure your Docker engine is running
 
-1. Start the shell for an environment with `bxshell.sh <env_name>`
+1. Start the shell for an environment with `bxshell <env_name>`
 
    ```
-   bxshell.sh us-south
+   bxshell us-south
    ```
 
    This retrieves the **bxshell** Docker image and starts a container.
@@ -39,17 +39,23 @@
 
 On your host, **bxshell** stores configuration files under `$HOME/.bxshell` where it creates one subfolder per environment. Under these folders, you'll find several configuration files created by the Docker container as you use the various IBM Cloud CLI and other scripts there.
 
-Use `bxshell.sh <env_name>` to start a new shell on the environment `env_name`. Environment name is arbitrary. You can use any name. This is only a way to keep configuration files together.
+Use `bxshell <env_name>` to start a new shell on the environment `env_name`. Environment name is arbitrary. You can use any name. This is only a way to keep configuration files together.
 
-`bxshell.sh` calls `_bxshell.sh` which in turn runs the Docker container interactively. The container will die when you quit the shell.
+`bxshell` runs the Docker container interactively. The container will die when you quit the shell. It starts the Docker container with privileged mode and expose the local Docker socket inside the container so you can build images there too.
 
-`_bxshell.sh` starts the Docker container with privileged mode and expose the local Docker socket inside the container so you can build images there too.
+`bxshell` also mounts your `$HOME` directory and the `$HOME/.bxshell/environments directory` under /root/mnt in the container. This way you can access your files from within the container.
 
-`_bxshell.sh` mounts your $HOME directory and the $HOME/.bxshell/environments directory under /root/mnt in the container. This way you can access your files from within the container.
+### Skip pulling the latest image
+
+Use `bxshell -l <env_name>` to use the current Docker image in your local registry.
+
+### Transient environment
+
+Use `bxshell -t` to run the Docker container with no mount and no persistent storage.
 
 ## Environment Customization
 
-Under $HOME/.bxshell/<env_name> you can create a .env_profile file to perform additional initialization when bxshell starts.
+Under `$HOME/.bxshell/<env_name>` you can create a `.env_profile` file to perform additional initialization when bxshell starts.
 
 ## Tools included in bxshell
 
