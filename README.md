@@ -2,7 +2,12 @@
 
 [![Build Status](https://travis-ci.org/l2fprod/bxshell.svg)](https://travis-ci.org/l2fprod/bxshell)
 
-**bxshell** is made of one Docker image where the IBM Cloud CLI and its plugin have been preinstalled together with the CLI to work with containers. **bxshell** also provides a script to start the Docker image and to mount configuration directories into the image.
+**bxshell** is made of one Docker image where the IBM Cloud CLI, its plugins and commonly used tools have been preinstalled.
+
+- **No more hassle downloading and installing CLIs** - all you need to be productive should already be there;
+- **bxshell Docker image is rebuilt weekly with the latest versions**;
+- **Multiple environments on the same machine** - open shell windows on multiple user accounts, multiple orgs with no conflict or side-effects;
+- **Access your local files from the shell**
 
 ![screen.png](./screen.png)
 
@@ -35,6 +40,13 @@
 
    This retrieves the **bxshell** Docker image and starts a container.
 
+1. Once in the shell, run `bx login` as you would normally do, change account, org, space.
+
+1. Eventually, quit the shell with `exit`
+
+1. Restart the shell `bxshell us-south` to restore account, org, space
+
+1. Run multiple environments in parallel in different shells
 ## How it works
 
 On your host, **bxshell** stores configuration files under `$HOME/.bxshell` where it creates one subfolder per environment. Under these folders, you'll find several configuration files created by the Docker container as you use the various IBM Cloud CLI and other scripts there.
