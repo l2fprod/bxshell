@@ -45,6 +45,17 @@ Use `bxshell <env_name>` to start a new shell on the environment `env_name`. Env
 
 `bxshell` also mounts your `$HOME` directory and the `$HOME/.bxshell/environments directory` under /root/mnt in the container. This way you can access your files from within the container.
 
+## Tips and tricks
+
+### Bash Autocomplete
+
+To autocomplete existing environment names, add the next lines to your Bash startup script:
+
+   ```sh
+   # bxshell autocomplete
+   source <bxshell-checkout-directory>/bin/.bxshell-bash-completion.sh
+   ```
+
 ### Skip pulling the latest image
 
 Use `bxshell -l <env_name>` to use the current Docker image in your local registry.
@@ -53,31 +64,13 @@ Use `bxshell -l <env_name>` to use the current Docker image in your local regist
 
 Use `bxshell -t` to run the Docker container with no mount and no persistent storage.
 
-## Environment Customization
+### Environment Customization
 
 Under `$HOME/.bxshell/<env_name>` you can create a `.env_profile` file to perform additional initialization when bxshell starts.
 
-## Tools included in bxshell
+### Using X11 apps on macOS
 
-The exact list can be found by looking at the [Dockerfile](Dockerfile).
-
-* IBM Cloud CLI and cloud-functions, functions shell, container-registry, container-service, dev, schematics plugins
-* cURL
-* docker
-* helm
-* istio
-* jq
-* kubectl
-* kubetail
-* node.js 6.9.1
-* nodemon
-* nvm
-* serverless framework and plugin
-* terraform
-* wget
-* yarn
-
-## Using X11 apps on macOS
+If you want to run the IBM Cloud Functions shell `fsh`, you will need a X11 server.
 
 1. Install [XQuartz](https://www.xquartz.org/index.html) X11 server
 
@@ -101,6 +94,26 @@ The exact list can be found by looking at the [Dockerfile](Dockerfile).
    ```
 
 1. Start your X11 app, it should open on your Mac desktop
+
+## Tools included in bxshell
+
+The exact list can be found by looking at the [Dockerfile](Dockerfile).
+
+* IBM Cloud CLI and cloud-functions, functions shell, container-registry, container-service, dev, plugins
+* cURL
+* docker
+* helm
+* istio
+* jq
+* kubectl
+* kubetail
+* node.js 6.9.1
+* nodemon
+* nvm
+* serverless framework and plugin
+* terraform
+* wget
+* yarn
 
 ---
 

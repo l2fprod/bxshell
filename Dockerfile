@@ -24,7 +24,6 @@ RUN bx plugin install container-registry -f -r Bluemix
 RUN bx plugin install container-service -f -r Bluemix
 RUN bx plugin install dev -f -r Bluemix
 RUN bx plugin install logging-cli -r Bluemix
-RUN bx plugin install schematics -f -r Bluemix
 
 # Kubernetes
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
