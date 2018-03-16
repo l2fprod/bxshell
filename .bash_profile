@@ -46,6 +46,10 @@ alias tmuxwsk="tmux new-session \; send-keys 'wsk activation poll' C-m \; split-
 # Istio
 export PATH="$PATH:/usr/local/istio/bin"
 
+# disable Terraform calling home
+# https://www.terraform.io/docs/commands/index.html#disable_checkpoint
+export CHECKPOINT_DISABLE=true
+
 # History
 export HISTFILE=$HOME/mnt/config/.bash_history
 export PROMPT_COMMAND='history -a'
