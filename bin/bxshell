@@ -81,6 +81,7 @@ function run_persistent_container() {
   touch $CONFIG_DIR/bx-config.json
   touch $CONFIG_DIR/cf-config.json
   touch $CONFIG_DIR/wsk.props
+  touch $CONFIG_DIR/slcli.conf
 
   mkdir -p $CONFIG_DIR/container-registry
   mkdir -p $CONFIG_DIR/container-service/clusters
