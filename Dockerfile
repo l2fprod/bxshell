@@ -1,5 +1,7 @@
 FROM l2fprod/bxshell-base:latest
 
+COPY support/ /opt/support/
+
 COPY install.sh install.sh
 RUN ./install.sh && rm install.sh
 

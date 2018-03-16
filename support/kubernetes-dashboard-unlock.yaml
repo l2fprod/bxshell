@@ -1,0 +1,21 @@
+# Once Dashboard is installed and accessible we can focus on configuring access control
+# to the cluster resources for users. As of release 1.7 Dashboard no longer has full admin
+# privileges granted by default. All the privileges are revoked and only minimal privileges
+# granted, that are required to make Dashboard work.
+#
+# The following brings back the Admin priviledges
+# https://github.com/kubernetes/dashboard/wiki/Access-control#admin-privileges
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: kubernetes-dashboard
+  labels:
+    k8s-app: kubernetes-dashboard
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: kubernetes-dashboard
+  namespace: kube-system
