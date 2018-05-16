@@ -69,4 +69,4 @@ if [ "$SHLVL" == "1" ]; then
 fi
 
 # change directory to a directory under the user home dir
-cd $CONTAINER_STARTUP_DIR
+cd "$CONTAINER_STARTUP_DIR"

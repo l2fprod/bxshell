@@ -89,8 +89,8 @@ function run_persistent_container() {
   mkdir -p $CONFIG_DIR/docker
   mkdir -p $CONFIG_DIR/softlayer
 
-  RELATIVE_DIR="$(relpath $PWD $HOME)"
-  if [[ $RELATIVE_DIR == .* ]];
+  RELATIVE_DIR=$(relpath "$PWD" "$HOME")
+  if [[ "$RELATIVE_DIR" == .* ]];
   then
     CONTAINER_STARTUP_DIR=/root/mnt/home
   else
