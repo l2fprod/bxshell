@@ -61,7 +61,12 @@ if [ -f ~/mnt/config/.env_profile ]; then
   . ~/mnt/config/.env_profile
 fi
 
+# Done only on the login shell
 if [ "$SHLVL" == "1" ]; then
+  if [ -d "$HOME/mnt/home/.ssh" ]; then
+    ln -s $HOME/mnt/home/.ssh/ $HOME/.ssh
+  fi
+
   cat $HOME/.motd.txt
 
   echo Port mapping at your convenience:
