@@ -25,6 +25,7 @@ bx plugin install cloud-functions -f -r Bluemix
 bx plugin install container-registry -f -r Bluemix
 bx plugin install container-service -f -r Bluemix
 bx plugin install dev -f -r Bluemix
+bx plugin install infrastructure-service -r Bluemix
 bx plugin install logging-cli -r Bluemix
 
 # Kubernetes
