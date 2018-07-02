@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+export SHELLOPTS
 
 # NVM for Node.JS
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
@@ -22,6 +23,7 @@ rm /tmp/bxinstall.sh
 # Bluemix CLI plugins
 bx plugin install activity-tracker -f -r Bluemix
 bx plugin install cloud-functions -f -r Bluemix
+bx plugin install cloud-internet-services -r Bluemix
 bx plugin install container-registry -f -r Bluemix
 bx plugin install container-service -f -r Bluemix
 bx plugin install dev -f -r Bluemix
