@@ -34,6 +34,7 @@ bx plugin repo-add Bluemix https://plugins.ng.bluemix.net
 # Auto completion
 . /usr/local/ibmcloud/bx/bash_autocomplete
 source <(kubectl completion bash)
+source <(helm completion bash)
 
 # Useful aliases
 alias bxlogin='bx login --apikey "$BLUEMIX_API_KEY" -o "$BLUEMIX_ORG" -s "$BLUEMIX_SPACE"'
