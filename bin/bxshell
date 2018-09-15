@@ -29,10 +29,13 @@ export BMX_TARGET=$1
 
 function select_target() {
   echo "Please choose a target:"
-  select target in "US" "London" "Frankfurt" "Sydney" "Exit"; do
+  select target in "US South" "US East" "London" "Frankfurt" "Sydney" "Exit"; do
     case $target in
-    "US" )
+    "US South" )
       export BMX_TARGET=ng
+      break;;
+    "US East" )
+      export BMX_TARGET=us-east
       break;;
     "London" )
       export BMX_TARGET=eu-gb
