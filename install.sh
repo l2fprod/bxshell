@@ -86,7 +86,7 @@ curl -LO $(curl -I https://github.com/IBM-Cloud/terraform-provider-ibm/releases/
   unzip linux_amd64.zip && \
   rm -f linux_amd64.zip && \
   mkdir /usr/local/share/terraform && \
-  mv terraform-provider-ibm /usr/local/share/terraform && \
+  mv terraform-provider-ibm* /usr/local/share/terraform/terraform-provider-ibm && \
   echo 'providers {
   ibm = "/usr/local/share/terraform/terraform-provider-ibm"
 }' > /root/.terraformrc
