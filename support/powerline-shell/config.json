@@ -1,0 +1,8 @@
+{
+  "segments": [
+    "/opt/support/powerline-shell/segments/ibmcloud.py",
+    "newline",
+    "cwd"
+  ],
+  "theme": "/opt/support/powerline-shell/themes/ibmcloud.py"
+}

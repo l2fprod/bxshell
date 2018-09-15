@@ -1,15 +1,5 @@
 reset=$(tput sgr0)
 bold=$(tput bold)
-# black=$(tput setaf 0)
-# red=$(tput setaf 1)
-# green=$(tput setaf 2)
-# yellow=$(tput setaf 3)
-# blue=$(tput setaf 4)
-# magenta=$(tput setaf 5)
-# cyan=$(tput setaf 6)
-# white=$(tput setaf 7)
-# user_color=$green
-# [ "$UID" -eq 0 ] && { user_color=$red; }
 
 if [ -f ~/.bashrc ]; then
   . ~/.bashrc
@@ -60,6 +50,24 @@ export PROMPT_COMMAND='history -a'
 if [ -f ~/mnt/config/.env_profile ]; then
   echo Loading custom environment profile
   . ~/mnt/config/.env_profile
+fi
+
+# Powerline
+if [[ $BXSHELL_ENABLE_POWERLINE ]]; then
+  mkdir -p /root/.config/powerline-shell
+  if [ -f ~/mnt/config/powerline-shell-config.json ]; then
+    ln -s ~/mnt/config/powerline-shell-config.json ~/.config/powerline-shell/config.json
+  else
+    ln -s /opt/support/powerline-shell/config.json ~/.config/powerline-shell/config.json
+  fi
+
+  function _update_ps1() {
+    PS1=$(powerline-shell $?)
+  }
+
+  if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+  fi
 fi
 
 # Done only on the login shell
