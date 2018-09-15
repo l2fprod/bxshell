@@ -77,6 +77,7 @@ function run_persistent_container() {
   # prepare our local environment directory
   BXSHELL_CONFIG=$HOME/.bxshell
   mkdir -p $BXSHELL_CONFIG
+  touch $BXSHELL_CONFIG/global.env
 
   export CONFIG_DIR=$BXSHELL_CONFIG/environments/$BMX_TARGET
   mkdir -p $CONFIG_DIR
@@ -110,6 +111,7 @@ function run_persistent_container() {
     -p 0:8080 \
     -p 0:9080 \
     -v /var/run/docker.sock:/var/run/docker.sock \
+    --env-file $BXSHELL_CONFIG/global.env \
     -e BXSHELL_TARGET=$BMX_TARGET \
     -e CONTAINER_NAME=$CONTAINER_NAME \
     -e CONTAINER_STARTUP_DIR="$CONTAINER_STARTUP_DIR" \
