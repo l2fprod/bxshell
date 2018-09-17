@@ -1,6 +1,11 @@
 {
   "segments": [
-    "/opt/support/powerline-shell/segments/ibmcloud.py",
+    "/opt/support/powerline-shell/segments/bxshell_env.py",
+    "/opt/support/powerline-shell/segments/kubectl_context.py",
+    "/opt/support/powerline-shell/segments/resource_group.py",
+    "/opt/support/powerline-shell/segments/cf_org.py",
+    "/opt/support/powerline-shell/segments/cf_space.py",
+    "/opt/support/powerline-shell/segments/region.py",
     "newline",
     "cwd"
   ],
