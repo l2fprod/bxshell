@@ -55,8 +55,10 @@ fi
 # Powerline
 if [[ $BXSHELL_ENABLE_POWERLINE ]]; then
   mkdir -p /root/.config/powerline-shell
+  # link the user configuration
   if [ -f ~/mnt/config/powerline-shell-config.json ]; then
     ln -s ~/mnt/config/powerline-shell-config.json ~/.config/powerline-shell/config.json
+  # or the default if no custom config
   else
     ln -s /opt/support/powerline-shell/config.json ~/.config/powerline-shell/config.json
   fi
@@ -68,6 +70,9 @@ if [[ $BXSHELL_ENABLE_POWERLINE ]]; then
   if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
   fi
+
+  # this helps with long command lines and going up in the history
+  stty columns 3000
 fi
 
 # Done only on the login shell

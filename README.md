@@ -47,6 +47,7 @@
 1. Restart the shell `bxshell us-south` to restore account, org, space
 
 1. Run multiple environments in parallel in different shells
+
 ## How it works
 
 On your host, **bxshell** stores configuration files under `$HOME/.bxshell` where it creates one subfolder per environment. Under these folders, you'll find several configuration files created by the Docker container as you use the various IBM Cloud CLI and other scripts there.
@@ -78,7 +79,30 @@ Use `bxshell -t` to run the Docker container with no mount and no persistent sto
 
 ### Environment Customization
 
+#### Global env file
+
+You can define global environment variables passed to all sessions by editing `$HOME/.bxshell/global.env`.
+
+Example:
+   ```
+   BXSHELL_ENABLE_POWERLINE=1
+   LANG=en_US.utf8
+   ```
+
+### Local customization
+
 Under `$HOME/.bxshell/<env_name>` you can create a `.env_profile` file to perform additional initialization when bxshell starts.
+
+### Using powerline shell
+
+**bxshell** comes with experimental support for [Powerline shell](https://github.com/b-ryan/powerline-shell/).
+
+1. Add `BXSHELL_ENABLE_POWERLINE=1` to the global.env file
+1. Download and install a [Powerline patched font](https://github.com/powerline/fonts). I use DejaVu
+1. Configure your shell to use this font.
+
+This is my configuration for iTerm 2:
+![text](iterm-preferences-text.png)
 
 ### Using X11 apps on macOS
 
