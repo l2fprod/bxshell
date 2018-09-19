@@ -1,10 +1,9 @@
-reset=$(tput sgr0)
-bold=$(tput bold)
-
 if [ -f ~/.bashrc ]; then
   . ~/.bashrc
 fi
 
+reset=$(tput sgr0)
+bold=$(tput bold)
 export PS1="\[$reset\]\
 bxshell[\
 $bold\
@@ -25,15 +24,6 @@ bx plugin repo-add Bluemix https://plugins.ng.bluemix.net
 . /usr/local/ibmcloud/autocomplete/bash_autocomplete
 source <(kubectl completion bash)
 source <(helm completion bash)
-
-# Useful aliases
-alias bxlogin='bx login --apikey "$BLUEMIX_API_KEY" -o "$BLUEMIX_ORG" -s "$BLUEMIX_SPACE"'
-alias kubeconsole='echo Open your browser at http://$(docker port $CONTAINER_NAME 8001)/ui && kubectl proxy --accept-hosts='.*' --address='0.0.0.0''
-alias freeconsole='echo Only do this on environment you trust && kubectl create -f /opt/support/kubernetes-dashboard-unlock.yaml'
-alias cf='bx cf'
-alias wsk='bx wsk'
-# split window with activation poll on top
-alias tmuxwsk="tmux new-session \; send-keys 'wsk activation poll' C-m \; split-window -v \;"
 
 # Istio
 export PATH="$PATH:/usr/local/istio/bin"
@@ -70,9 +60,6 @@ if [[ $BXSHELL_ENABLE_POWERLINE ]]; then
   if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
   fi
-
-  # this helps with long command lines and going up in the history
-  stty columns 3000
 fi
 
 # Done only on the login shell

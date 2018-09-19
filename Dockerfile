@@ -11,6 +11,8 @@ VOLUME /root/mnt/config
 # User files
 VOLUME /root/mnt/home
 
+COPY .bashrc /root
+COPY .bash_aliases /root
 COPY .bash_profile /root
 COPY .motd.txt /root
 ENV TERM xterm-256color
