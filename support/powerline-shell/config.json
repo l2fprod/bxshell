@@ -9,5 +9,9 @@
     "newline",
     "cwd"
   ],
-  "theme": "/opt/support/powerline-shell/themes/ibmcloud.py"
+  "theme": "/opt/support/powerline-shell/themes/ibmcloud.py",
+  "mode": "flat",
+  "cwd": {
+    "mode": "plain"
+  }
 }
