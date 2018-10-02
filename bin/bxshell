@@ -107,6 +107,7 @@ function run_persistent_container() {
   CONTAINER_NAME=bxshell-$BMX_TARGET-$RANDOM
   docker run -i --privileged \
     --name $CONTAINER_NAME \
+    --rm \
     -p 0:8001 \
     -p 0:8080 \
     -p 0:9080 \
@@ -126,6 +127,7 @@ function run_transient_container() {
   CONTAINER_NAME=bxshell-transient-$RANDOM
   docker run -i --privileged \
     --name $CONTAINER_NAME \
+    --rm \
     -p 0:8001 \
     -p 0:8080 \
     -p 0:9080 \
