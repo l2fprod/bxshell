@@ -40,6 +40,13 @@ curl -LO https://raw.githubusercontent.com/johanhaleby/kubetail/master/kubetail 
   mv kubetail /usr/local/bin/kubetail && \
   chmod +x /usr/local/bin/kubetail
 
+# Kail https://github.com/boz/kail
+curl -LO $(curl --silent "https://api.github.com/repos/boz/kail/releases/latest" | jq -r .assets[].browser_download_url | grep linux_amd64) \
+  && mkdir kail \
+  && tar zxvf kail*linux*.tar.gz -C kail \
+  && mv kail/kail /usr/local/bin/kail \
+  && rm -rf kail kail*linux*.tar.gz
+
 # Istio
 (cd /usr/local && curl -L https://git.io/getLatestIstio | sh -)
 ln -s /usr/local/istio* /usr/local/istio
