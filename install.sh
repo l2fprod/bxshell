@@ -51,6 +51,11 @@ curl -LO $(curl --silent "https://api.github.com/repos/boz/kail/releases/latest"
 (cd /usr/local && curl -L https://git.io/getLatestIstio | sh -)
 ln -s /usr/local/istio* /usr/local/istio
 
+# Knative CLI https://github.com/cppforlife/knctl
+curl -LO $(curl --silent "https://api.github.com/repos/cppforlife/knctl/releases/latest" | jq -r .assets[].browser_download_url | grep linux-amd64) \
+  && mv knctl* /usr/local/bin/knctl \
+  && chmod +x /usr/local/bin/knctl
+
 # Helm
 curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
 
