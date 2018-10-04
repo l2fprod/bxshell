@@ -7,7 +7,7 @@
     "/opt/support/powerline-shell/segments/cf_org.py",
     "/opt/support/powerline-shell/segments/cf_space.py",
     "newline",
-    "cwd",
+    "/opt/support/powerline-shell/segments/plain_cwd",
     "set_term_title"
   ],
   "theme": "/opt/support/powerline-shell/themes/ibmcloud.py",
