@@ -7,10 +7,17 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | b
 source /root/.nvm/nvm.sh
 nvm install 6.9.1
 npm install -g nodemon
+
+# Serverless
 npm install -g serverless serverless-openwhisk@latest --unsafe-perm spawn-sync
 serverless slstats -d
 npm install -g @ibm-functions/shell --unsafe-perm
-nvm cache clear
+
+# wskdeploy
+curl -LO $(curl --silent "https://api.github.com/repos/apache/incubator-openwhisk-wskdeploy/releases/latest" | jq -r .assets[].browser_download_url | grep linux-amd64) \
+  && tar zxvf openwhisk_wskdeploy*.tgz wskdeploy \
+  && mv wskdeploy /usr/local/bin/ \
+  && rm -f openwhisk_wskdeploy*.tgz
 
 # SoftLayer
 pip install softlayer
@@ -110,3 +117,6 @@ ln -s /root/mnt/config/helm /root/.helm
 # Docker configuration
 mkdir /root/mnt/config/docker
 ln -s /root/mnt/config/docker /root/.docker
+
+# Clean up
+nvm cache clear
