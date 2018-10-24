@@ -9,17 +9,22 @@ nvm install 6.9.1
 npm install -g nodemon
 
 # Serverless
+echo ">> serverless"
 npm install -g serverless serverless-openwhisk@latest --unsafe-perm spawn-sync
 serverless slstats -d
+
+echo ">> functions shell"
 npm install -g @ibm-functions/shell --unsafe-perm
 
 # wskdeploy
+echo ">> wskdeploy"
 curl -LO $(curl --retry 10 --retry-delay 5 --silent "https://api.github.com/repos/apache/incubator-openwhisk-wskdeploy/releases/latest" | jq -r .assets[].browser_download_url | grep linux-amd64) \
   && tar zxvf openwhisk_wskdeploy*.tgz wskdeploy \
   && mv wskdeploy /usr/local/bin/ \
   && rm -f openwhisk_wskdeploy*.tgz
 
 # SoftLayer
+echo ">> softlayer"
 pip install softlayer
 
 # Bluemix CLI
