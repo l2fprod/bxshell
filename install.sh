@@ -55,8 +55,11 @@ curl -LO $(curl --silent "https://api.github.com/repos/boz/kail/releases/latest"
   && rm -rf kail kail*linux*.tar.gz
 
 # Istio
-(cd /usr/local && curl -L https://git.io/getLatestIstio | sh -)
-ln -s /usr/local/istio* /usr/local/istio
+curl -LO $(curl --silent "https://api.github.com/repos/istio/istio/releases/latest" | jq -r .assets[].browser_download_url | grep linux) \
+  && tar zxvf istio-*.tar.gz \
+  && rm -f istio-*.tar.gz \
+  && mv istio-* /usr/local/ \
+  && ln -s /usr/local/istio* /usr/local/istio
 
 # Knative CLI https://github.com/cppforlife/knctl
 curl -LO $(curl --silent "https://api.github.com/repos/cppforlife/knctl/releases/latest" | jq -r .assets[].browser_download_url | grep linux-amd64) \
