@@ -3,7 +3,7 @@ set -e
 export SHELLOPTS
 
 function get_latest {
-  latest_content=$(curl --silent "https://api.github.com/repos/$1/releases/latest")
+  latest_content=$(curl -H "Authorization: token $GITHUB_TOKEN" --silent "https://api.github.com/repos/$1/releases/latest")
   if (echo $latest_content | grep "browser_download_url" | grep -q $2 >/dev/null); then
     echo $latest_content | jq -r .assets[].browser_download_url | grep $2
   else
