@@ -27,22 +27,30 @@ curl -LO $(curl --retry 10 --retry-delay 5 --silent "https://api.github.com/repo
 echo ">> softlayer"
 pip install softlayer
 
-# Bluemix CLI
+# IBM Cloud CLI
 echo ">> ibmcloud"
 curl -fsSL https://clis.ng.bluemix.net/install/linux > /tmp/bxinstall.sh
 sh /tmp/bxinstall.sh
 rm /tmp/bxinstall.sh
 
-# Bluemix CLI plugins
+# IBM Cloud CLI plugins
 echo ">> ibmcloud plugins"
-bx plugin install activity-tracker -f -r Bluemix
-bx plugin install cloud-functions -f -r Bluemix
-bx plugin install cloud-internet-services -r Bluemix
-bx plugin install container-registry -f -r Bluemix
-bx plugin install container-service -f -r Bluemix
-bx plugin install dev -f -r Bluemix
-bx plugin install infrastructure-service -r Bluemix
-bx plugin install logging-cli -r Bluemix
+ibmcloud_plugins=( \
+  activity-tracker \
+  cloud-databases \
+  cloud-functions \
+  cloud-internet-services \
+  container-registry \
+  container-service \
+  dev \
+  infrastructure-service \
+  kp \
+  logging-cli \
+)
+for plugin in "${ibmcloud_plugins[@]}"
+do
+  ibmcloud plugin install $plugin -f -r "IBM Cloud"
+done
 
 # Kubernetes
 echo ">> kubectl"
@@ -96,25 +104,25 @@ curl -LO $(curl --retry 10 --retry-delay 5 -I https://github.com/IBM-Cloud/terra
 # Expose configuration to be overriden
 mkdir -p /root/mnt/config
 
-# Bluemix CLI configuration
+# IBM Cloud CLI configuration
 rm /root/.bluemix/config.json
 touch /root/mnt/config/bx-config.json
 ln -s /root/mnt/config/bx-config.json /root/.bluemix/config.json
 
-# Bluemix CF configuration
+# IBM Cloud CF configuration
 rm /root/.bluemix/.cf/config.json
 touch /root/mnt/config/cf-config.json
 ln -s /root/mnt/config/cf-config.json /root/.bluemix/.cf/config.json
 
-# Bluemix Cloud Functions configuration
+# IBM Cloud Cloud Functions configuration
 touch /root/mnt/config/wsk.props
 ln -s /root/mnt/config/wsk.props /root/.wskprops
 
-# Bluemix container-registry
+# IBM Cloud container-registry
 mkdir /root/mnt/config/container-registry
 ln -s /root/mnt/config/container-registry/config.json /root/.bluemix/plugins/container-registry/config.json
 
-# Bluemix container-service
+# IBM Cloud container-service
 mkdir /root/mnt/config/container-service
 ln -s /root/mnt/config/container-service/config.json /root/.bluemix/plugins/container-service/config.json
 ln -s /root/mnt/config/container-service/clusters /root/.bluemix/plugins/container-service/clusters
@@ -123,7 +131,7 @@ ln -s /root/mnt/config/container-service/clusters /root/.bluemix/plugins/contain
 touch /root/mnt/config/slcli.conf
 ln -s /root/mnt/config/slcli.conf /root/.softlayer
 
-# Bluemix SoftLayer service
+# IBM Cloud SoftLayer service
 mkdir /root/mnt/config/softlayer
 ln -s /root/mnt/config/softlayer /root/.bluemix/plugins/softlayer
 
