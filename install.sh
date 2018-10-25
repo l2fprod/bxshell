@@ -2,6 +2,16 @@
 set -e
 export SHELLOPTS
 
+function get_latest {
+  latest_content=$(curl --silent "https://api.github.com/repos/$1/releases/latest")
+  if (echo $latest_content | grep "browser_download_url" | grep -q $2 >/dev/null); then
+    echo $latest_content | jq -r .assets[].browser_download_url | grep $2
+  else
+    echo "Failed to get $1: $latest_content"
+    exit 2
+  fi
+}
+
 # NVM for Node.JS
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
 source /root/.nvm/nvm.sh
@@ -18,7 +28,7 @@ npm install -g @ibm-functions/shell --unsafe-perm
 
 # wskdeploy
 echo ">> wskdeploy"
-curl -LO $(curl --retry 10 --retry-delay 5 --silent "https://api.github.com/repos/apache/incubator-openwhisk-wskdeploy/releases/latest" | jq -r .assets[].browser_download_url | grep linux-amd64)
+curl -LO $(get_latest "apache/incubator-openwhisk-wskdeploy" linux-amd64)
 tar zxvf openwhisk_wskdeploy*.tgz wskdeploy
 mv wskdeploy /usr/local/bin/
 rm -f openwhisk_wskdeploy*.tgz
@@ -63,16 +73,6 @@ echo ">> kubetail"
 curl -LO https://raw.githubusercontent.com/johanhaleby/kubetail/master/kubetail
 mv kubetail /usr/local/bin/kubetail
 chmod +x /usr/local/bin/kubetail
-
-function get_latest {
-  latest_content=$(curl --silent "https://api.github.com/repos/$1/releases/latest")
-  if (echo $latest_content | grep "browser_download_url" | grep -q $2 >/dev/null); then
-    echo $latest_content | jq -r .assets[].browser_download_url | grep $2
-  else
-    echo "Failed to get $1: $latest_content"
-    exit 2
-  fi
-}
 
 # Kail https://github.com/boz/kail
 echo ">> kail"
