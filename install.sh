@@ -18,10 +18,10 @@ npm install -g @ibm-functions/shell --unsafe-perm
 
 # wskdeploy
 echo ">> wskdeploy"
-curl -LO $(curl --retry 10 --retry-delay 5 --silent "https://api.github.com/repos/apache/incubator-openwhisk-wskdeploy/releases/latest" | jq -r .assets[].browser_download_url | grep linux-amd64) \
-  && tar zxvf openwhisk_wskdeploy*.tgz wskdeploy \
-  && mv wskdeploy /usr/local/bin/ \
-  && rm -f openwhisk_wskdeploy*.tgz
+curl -LO $(curl --retry 10 --retry-delay 5 --silent "https://api.github.com/repos/apache/incubator-openwhisk-wskdeploy/releases/latest" | jq -r .assets[].browser_download_url | grep linux-amd64)
+tar zxvf openwhisk_wskdeploy*.tgz wskdeploy
+mv wskdeploy /usr/local/bin/
+rm -f openwhisk_wskdeploy*.tgz
 
 # SoftLayer
 echo ">> softlayer"
@@ -54,37 +54,47 @@ done
 
 # Kubernetes
 echo ">> kubectl"
-curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl --retry 10 --retry-delay 5 -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl \
-  && mv kubectl /usr/local/bin/kubectl \
-  && chmod +x /usr/local/bin/kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl --retry 10 --retry-delay 5 -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+mv kubectl /usr/local/bin/kubectl
+chmod +x /usr/local/bin/kubectl
 
 # Kubetail
 echo ">> kubetail"
-curl -LO https://raw.githubusercontent.com/johanhaleby/kubetail/master/kubetail \
-  && mv kubetail /usr/local/bin/kubetail \
-  && chmod +x /usr/local/bin/kubetail
+curl -LO https://raw.githubusercontent.com/johanhaleby/kubetail/master/kubetail
+mv kubetail /usr/local/bin/kubetail
+chmod +x /usr/local/bin/kubetail
+
+function get_latest {
+  latest_content=$(curl --silent "https://api.github.com/repos/$1/releases/latest")
+  if (echo $latest_content | grep "browser_download_url" | grep -q $2 >/dev/null); then
+    echo $latest_content | jq -r .assets[].browser_download_url | grep $2
+  else
+    echo "Failed to get $1: $latest_content"
+    exit 2
+  fi
+}
 
 # Kail https://github.com/boz/kail
 echo ">> kail"
-curl -LO $(curl --retry 10 --retry-delay 5 --silent "https://api.github.com/repos/boz/kail/releases/latest" | jq -r .assets[].browser_download_url | grep linux_amd64) \
-  && mkdir kail \
-  && tar zxvf kail*linux*.tar.gz -C kail \
-  && mv kail/kail /usr/local/bin/kail \
-  && rm -rf kail kail*linux*.tar.gz
+curl -LO $(get_latest "boz/kail" linux_amd64)
+mkdir kail
+tar zxvf kail*linux*.tar.gz -C kail
+mv kail/kail /usr/local/bin/kail
+rm -rf kail kail*linux*.tar.gz
 
 # Istio
 echo ">> istio"
-curl -LO $(curl --retry 10 --retry-delay 5 --silent "https://api.github.com/repos/istio/istio/releases/latest" | jq -r .assets[].browser_download_url | grep linux) \
-  && tar zxvf istio-*.tar.gz \
-  && rm -f istio-*.tar.gz \
-  && mv istio-* /usr/local/ \
-  && ln -s /usr/local/istio* /usr/local/istio
+curl -LO $(get_latest "istio/istio" linux)
+tar zxvf istio-*.tar.gz
+rm -f istio-*.tar.gz
+mv istio-* /usr/local/
+ln -s /usr/local/istio* /usr/local/istio
 
 # Knative CLI https://github.com/cppforlife/knctl
 echo ">> knctl"
-curl -LO $(curl --retry 10 --retry-delay 5 --silent "https://api.github.com/repos/cppforlife/knctl/releases/latest" | jq -r .assets[].browser_download_url | grep linux-amd64) \
-  && mv knctl* /usr/local/bin/knctl \
-  && chmod +x /usr/local/bin/knctl
+curl -LO $(get_latest "cppforlife/knctl" linux-amd64)
+mv knctl* /usr/local/bin/knctl
+chmod +x /usr/local/bin/knctl
 
 # Helm
 echo ">> helm"
@@ -92,12 +102,12 @@ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
 
 # IBM provider for Terraform
 echo ">> terraform"
-curl -LO $(curl --retry 10 --retry-delay 5 -I https://github.com/IBM-Cloud/terraform-provider-ibm/releases/latest | grep Location | awk '{print $2}' | sed 's/tag/download/g' | tr -d '[:space:]')/linux_amd64.zip && \
-  unzip linux_amd64.zip && \
-  rm -f linux_amd64.zip && \
-  mkdir /usr/local/share/terraform && \
-  mv terraform-provider-ibm* /usr/local/share/terraform/terraform-provider-ibm && \
-  echo 'providers {
+curl -LO $(get_latest "IBM-Cloud/terraform-provider-ibm" linux_amd64)
+unzip linux_amd64.zip
+rm -f linux_amd64.zip
+mkdir /usr/local/share/terraform
+mv terraform-provider-ibm* /usr/local/share/terraform/terraform-provider-ibm
+echo 'providers {
   ibm = "/usr/local/share/terraform/terraform-provider-ibm"
 }' > /root/.terraformrc
 
