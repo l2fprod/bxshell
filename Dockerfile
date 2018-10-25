@@ -3,7 +3,9 @@ FROM l2fprod/bxshell-base:latest
 COPY support/ /opt/support/
 
 COPY install.sh install.sh
-RUN ./install.sh && rm install.sh
+
+ARG GITHUB_TOKEN
+RUN GITHUB_TOKEN=$GITHUB_TOKEN ./install.sh && rm install.sh
 
 # Environment configuration
 VOLUME /root/mnt/config
