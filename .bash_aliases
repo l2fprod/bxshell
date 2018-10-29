@@ -6,7 +6,7 @@ alias l='ls -CF'
 alias bxlogin='bx login --apikey "$BLUEMIX_API_KEY" -o "$BLUEMIX_ORG" -s "$BLUEMIX_SPACE"'
 alias kubeconsole='echo "Open your browser at http://$(docker port $CONTAINER_NAME 8001)/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/deployment?namespace=default" && kubectl proxy --accept-hosts='.*' --address='0.0.0.0''
 alias freeconsole='echo Only do this on environment you trust && kubectl create -f /opt/support/kubernetes-dashboard-unlock.yaml'
-alias showports="docker port $CONTAINER_NAME"
+alias showports="docker port $CONTAINER_NAME | awk '{print \$1 \" -> \" \$3 \" -> http://\" \$3}'"
 alias cf='bx cf'
 alias wsk='bx wsk'
 # split window with activation poll on top
