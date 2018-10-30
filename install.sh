@@ -50,6 +50,7 @@ ibmcloud_plugins=( \
   cloud-databases \
   cloud-functions \
   cloud-internet-services \
+  cloud-object-storage \
   container-registry \
   container-service \
   dev \

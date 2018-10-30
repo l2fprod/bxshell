@@ -1,7 +1,8 @@
 FROM l2fprod/bxshell-base:latest
 
-COPY support/ /opt/support/
+ENV USER root
 
+COPY support/ /opt/support/
 COPY install.sh install.sh
 
 ARG GITHUB_TOKEN
