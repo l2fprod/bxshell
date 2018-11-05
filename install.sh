@@ -55,7 +55,7 @@ ibmcloud_plugins=( \
   container-service \
   dev \
   infrastructure-service \
-  kp \
+  key-protect \
   logging-cli \
 )
 for plugin in "${ibmcloud_plugins[@]}"
