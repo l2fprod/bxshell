@@ -21,7 +21,6 @@ npm install -g nodemon
 # Serverless
 echo ">> serverless"
 npm install -g serverless serverless-openwhisk@latest --unsafe-perm spawn-sync
-serverless slstats -d
 
 echo ">> functions shell"
 npm install -g @ibm-functions/shell --unsafe-perm
