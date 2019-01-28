@@ -85,7 +85,7 @@ rm -rf kail kail*linux*.tar.gz
 echo ">> stern"
 curl -LO $(get_latest "wercker/stern" linux_amd64)
 mv stern_linux_amd64 /usr/local/bin/stern
-chmox +x /usr/local/bin/stern
+chmod +x /usr/local/bin/stern
 
 # Istio
 echo ">> istio"
