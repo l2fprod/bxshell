@@ -24,6 +24,7 @@ bx plugin repo-add Bluemix https://plugins.ng.bluemix.net
 . /usr/local/ibmcloud/autocomplete/bash_autocomplete
 source <(kubectl completion bash)
 source <(helm completion bash)
+source <(stern --completion bash)
 
 # Istio
 export PATH="$PATH:/usr/local/istio/bin"
