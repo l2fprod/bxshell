@@ -91,7 +91,7 @@ Example:
 
 ### Local customization
 
-Under `$HOME/.bxshell/<env_name>` you can create a `.env_profile` file to perform additional initialization when bxshell starts.
+Under `$HOME/.bxshell/environments/<env_name>` you can create a `.env_profile` file to perform additional initialization when bxshell starts.
 
 ### Using powerline shell
 
