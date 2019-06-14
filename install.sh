@@ -143,6 +143,7 @@ ln -s /root/mnt/config/container-service/config.json /root/.bluemix/plugins/cont
 ln -s /root/mnt/config/container-service/clusters /root/.bluemix/plugins/container-service/clusters
 
 # IBM Cloud vpc-infrastructure
+rm -f /root/.bluemix/plugins/vpc-infrastructure/config.json
 mkdir /root/mnt/config/vpc-infrastructure
 ln -s /root/mnt/config/vpc-infrastructure/config.json /root/.bluemix/plugins/vpc-infrastructure/config.json
 
