@@ -142,6 +142,10 @@ mkdir /root/mnt/config/container-service
 ln -s /root/mnt/config/container-service/config.json /root/.bluemix/plugins/container-service/config.json
 ln -s /root/mnt/config/container-service/clusters /root/.bluemix/plugins/container-service/clusters
 
+# IBM Cloud vpc-infrastructure
+mkdir /root/mnt/config/vpc-infrastructure
+ln -s /root/mnt/config/vpc-infrastructure/config.json /root/.bluemix/plugins/vpc-infrastructure/config.json
+
 # SoftLayer CLI
 touch /root/mnt/config/slcli.conf
 ln -s /root/mnt/config/slcli.conf /root/.softlayer
