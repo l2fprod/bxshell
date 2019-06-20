@@ -83,6 +83,8 @@ function run_persistent_container() {
   mkdir -p $CONFIG_DIR
   echo "Environment configuration is $CONFIG_DIR"
   touch $CONFIG_DIR/bx-config.json
+  # CLI expects these permissions
+  chmod 0600 $CONFIG_DIR/bx-config.json
   touch $CONFIG_DIR/cf-config.json
   touch $CONFIG_DIR/wsk.props
   touch $CONFIG_DIR/slcli.conf
