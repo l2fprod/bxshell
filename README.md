@@ -77,6 +77,14 @@ Use `bxshell -l <env_name>` to use the current Docker image in your local regist
 
 Use `bxshell -t` to run the Docker container with no mount and no persistent storage.
 
+### Remove an environment
+
+To remove an environment simply delete its directory:
+
+   ```sh
+   rm -r $HOME/.bxshell/environments/<environment>
+   ```
+
 ### Environment Customization
 
 #### Global env file
@@ -133,7 +141,7 @@ If you want to run the IBM Cloud Functions shell `fsh`, you will need a X11 serv
 
 ## Tools included in bxshell
 
-The exact list can be found by looking at the [Dockerfile](Dockerfile).
+The exact list can be found by looking at the [installation script](install.sh).
 
 * IBM Cloud CLI and cloud-functions, functions shell, container-registry, container-service, dev, plugins
 * cURL
