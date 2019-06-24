@@ -52,9 +52,10 @@ ibmcloud_plugins=( \
   container-registry \
   container-service \
   dev \
-  infrastructure-service \
+  vpc-infrastructure \
   key-protect \
   logging-cli \
+  power-iaas \
 )
 for plugin in "${ibmcloud_plugins[@]}"
 do
