@@ -62,6 +62,13 @@ do
   ibmcloud plugin install $plugin -f -r "IBM Cloud"
 done
 
+# OpenShift CLI
+curl -LO $(get_latest "openshift/origin" linux-64bit)
+tar zxvf openshift-origin*.tar.gz
+mv openshift-origin-*/oc /usr/local/bin/oc
+mv openshift-origin-*/kubectl /usr/local/bin/ockubectl
+rm -rf openshift-origin-*
+
 # Kubernetes
 echo ">> kubectl"
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl --retry 10 --retry-delay 5 -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
