@@ -63,7 +63,8 @@ do
 done
 
 # OpenShift CLI
-curl -LO $(get_latest "openshift/origin" linux-64bit)
+echo ">> openshift client tools"
+curl -LO $(get_latest "openshift/origin" openshift-origin-client-tools.*linux-64bit)
 tar zxvf openshift-origin*.tar.gz
 mv openshift-origin-*/oc /usr/local/bin/oc
 mv openshift-origin-*/kubectl /usr/local/bin/ockubectl
