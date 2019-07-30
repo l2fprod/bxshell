@@ -23,6 +23,7 @@ bx plugin repo-add Bluemix https://plugins.ng.bluemix.net
 # Auto completion
 . /usr/local/ibmcloud/autocomplete/bash_autocomplete
 source <(kubectl completion bash)
+source <(oc completion bash)
 source <(helm completion bash)
 source <(stern --completion bash)
 
