@@ -27,7 +27,7 @@ npm install -g @ibm-functions/shell --unsafe-perm
 
 # wskdeploy
 echo ">> wskdeploy"
-curl -LO $(get_latest "apache/incubator-openwhisk-wskdeploy" linux-amd64)
+curl -LO $(get_latest "apache/openwhisk-wskdeploy" linux-amd64)
 tar zxvf openwhisk_wskdeploy*.tgz wskdeploy
 mv wskdeploy /usr/local/bin/
 rm -f openwhisk_wskdeploy*.tgz
