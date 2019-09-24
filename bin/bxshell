@@ -91,6 +91,7 @@ function run_persistent_container() {
 
   mkdir -p $CONFIG_DIR/container-registry
   mkdir -p $CONFIG_DIR/container-service/clusters
+  mkdir -p $CONFIG_DIR/cloud-functions
   mkdir -p $CONFIG_DIR/vpc-infrastructure
   mkdir -p $CONFIG_DIR/helm
   mkdir -p $CONFIG_DIR/docker

@@ -143,6 +143,11 @@ ln -s /root/mnt/config/cf-config.json /root/.bluemix/.cf/config.json
 touch /root/mnt/config/wsk.props
 ln -s /root/mnt/config/wsk.props /root/.wskprops
 
+rm /root/.bluemix/plugins/cloud-functions/config.json
+mkdir /root/mnt/config/cloud-functions
+touch /root/mnt/config/cloud-functions/config.json
+ln -s /root/mnt/config/cloud-functions/config.json /root/.bluemix/plugins/cloud-functions/config.json
+
 # IBM Cloud container-registry
 mkdir /root/mnt/config/container-registry
 ln -s /root/mnt/config/container-registry/config.json /root/.bluemix/plugins/container-registry/config.json
