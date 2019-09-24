@@ -134,7 +134,7 @@ ln -s /root/mnt/config/cf-config.json /root/.bluemix/.cf/config.json
 touch /root/mnt/config/wsk.props
 ln -s /root/mnt/config/wsk.props /root/.wskprops
 
-rm /root/.bluemix/plugins/cloud-functions/config.json
+rm -f /root/.bluemix/plugins/cloud-functions/config.json
 mkdir /root/mnt/config/cloud-functions
 touch /root/mnt/config/cloud-functions/config.json
 ln -s /root/mnt/config/cloud-functions/config.json /root/.bluemix/plugins/cloud-functions/config.json
