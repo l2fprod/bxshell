@@ -57,6 +57,7 @@ ibmcloud_plugins=( \
   key-protect \
   logging-cli \
   power-iaas \
+  schematics \
 )
 for plugin in "${ibmcloud_plugins[@]}"
 do
