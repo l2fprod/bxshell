@@ -22,16 +22,6 @@ npm install -g nodemon
 echo ">> serverless"
 npm install -g serverless serverless-openwhisk@latest --unsafe-perm spawn-sync
 
-echo ">> functions shell"
-npm install -g @ibm-functions/shell --unsafe-perm
-
-# wskdeploy
-echo ">> wskdeploy"
-curl -LO $(get_latest "apache/openwhisk-wskdeploy" linux-amd64)
-tar zxvf openwhisk_wskdeploy*.tgz wskdeploy
-mv wskdeploy /usr/local/bin/
-rm -f openwhisk_wskdeploy*.tgz
-
 # SoftLayer
 echo ">> softlayer"
 pip install softlayer
