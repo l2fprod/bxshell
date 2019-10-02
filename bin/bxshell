@@ -64,7 +64,11 @@ function pull_latest_image() {
 # restore this directory when running in the container
 # if not under $HOME, then default to home in the container
 function relpath() {
-  python -c "import os,sys;print(os.path.relpath(*(sys.argv[1:])))" "$@";
+  if which python > /dev/null; then
+    python -c "import os,sys;print(os.path.relpath(*(sys.argv[1:])))" "$@";
+  else
+    echo "."
+  fi
 }
 
 function run_persistent_container() {
@@ -104,6 +108,7 @@ function run_persistent_container() {
   else
     CONTAINER_STARTUP_DIR="/root/mnt/home/$RELATIVE_DIR"
   fi
+  echo "Startup dir is $CONTAINER_STARTUP_DIR"
 
   pull_latest_image
 

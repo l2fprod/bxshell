@@ -15,7 +15,6 @@
 
 ## Requirements
 
-* Python 2.7.10
 * Docker Engine
 
 > Tested on macOS Sierra 10.12.6 with Docker Version 17.12.0-ce-mac49 (21995)
