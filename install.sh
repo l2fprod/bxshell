@@ -4,8 +4,9 @@ export SHELLOPTS
 
 function get_latest {
   latest_content=$(curl -H "Authorization: token $GITHUB_TOKEN" --silent "https://api.github.com/repos/$1/releases/latest")
-  if (echo $latest_content | grep "browser_download_url" | grep -q $2 >/dev/null); then
-    echo $latest_content | jq -r .assets[].browser_download_url | grep $2
+  latest_url=$(echo $latest_content | jq -r '.assets[] | select(.browser_download_url | test("'$2'")) | .browser_download_url')
+  if [ ! -z "$latest_url" ]; then
+    echo $latest_url
   else
     echo "Failed to get $1: $latest_content"
     exit 2
@@ -36,7 +37,6 @@ rm /tmp/bxinstall.sh
 # IBM Cloud CLI plugins
 echo ">> ibmcloud plugins"
 ibmcloud_plugins=( \
-  activity-tracker \
   cloud-databases \
   cloud-functions \
   cloud-internet-services \
@@ -46,7 +46,6 @@ ibmcloud_plugins=( \
   dev \
   vpc-infrastructure \
   key-protect \
-  logging-cli \
   power-iaas \
   schematics \
 )
@@ -91,7 +90,7 @@ chmod +x /usr/local/bin/stern
 
 # Istio
 echo ">> istio"
-curl -LO $(get_latest "istio/istio" linux)
+curl -LO $(get_latest "istio/istio" "istio-(.*)linux.tar.gz$")
 tar zxvf istio-*.tar.gz
 rm -f istio-*.tar.gz
 mv istio-* /usr/local/
