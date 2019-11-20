@@ -109,13 +109,9 @@ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
 # IBM provider for Terraform
 echo ">> terraform"
 curl -LO $(get_latest "IBM-Cloud/terraform-provider-ibm" linux_amd64)
-unzip linux_amd64.zip
+mkdir -p /root/.terraform.d/plugins/linux_amd64
+unzip linux_amd64.zip -d /root/.terraform.d/plugins/linux_amd64
 rm -f linux_amd64.zip
-mkdir /usr/local/share/terraform
-mv terraform-provider-ibm* /usr/local/share/terraform/terraform-provider-ibm
-echo 'providers {
-  ibm = "/usr/local/share/terraform/terraform-provider-ibm"
-}' > /root/.terraformrc
 
 # Expose configuration to be overriden
 mkdir -p /root/mnt/config
