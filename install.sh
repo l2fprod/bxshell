@@ -38,6 +38,7 @@ rm /tmp/bxinstall.sh
 echo ">> ibmcloud plugins"
 ibmcloud_plugins=( \
   cloud-databases \
+  cloud-dns-services \
   cloud-functions \
   cloud-internet-services \
   cloud-object-storage \
