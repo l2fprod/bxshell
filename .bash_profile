@@ -72,9 +72,13 @@ if [ "$SHLVL" == "1" ]; then
 
   cat $HOME/.motd.txt
 
-  echo Port mapping at your convenience:
-  docker port $CONTAINER_NAME | awk '{print $1 " -> " $3 " -> http://" $3}'
+  if [ ! "x$CONTAINER_NAME" = x ]; then
+    echo Port mapping at your convenience:
+    docker port $CONTAINER_NAME | awk '{print $1 " -> " $3 " -> http://" $3}'
+  fi
 fi
 
 # change directory to a directory under the user home dir
-cd "$CONTAINER_STARTUP_DIR"
+if [ ! "x$CONTAINER_STARTUP_DIR" = x ]; then
+  cd "$CONTAINER_STARTUP_DIR"
+fi
