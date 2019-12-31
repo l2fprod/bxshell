@@ -18,6 +18,4 @@
        '7##@@######################@##W\
 
 
-Tips:
-Just type 'kubeconsole' to enable the Kubernetes console
 ---
