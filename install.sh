@@ -111,8 +111,8 @@ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
 echo ">> terraform provider"
 mkdir -p /root/.terraform.d/plugins/linux_amd64
 
-echo ">>> 1.0.0"
-curl -LO https://github.com/IBM-Cloud/terraform-provider-ibm/releases/download/v1.0.0/linux_amd64.zip
+echo ">>> 0.23.0"
+curl -LO https://github.com/IBM-Cloud/terraform-provider-ibm/releases/download/v0.23.0/linux_amd64.zip
 unzip linux_amd64.zip -d /root/.terraform.d/plugins/linux_amd64
 rm -f linux_amd64.zip
 
