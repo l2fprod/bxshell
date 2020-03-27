@@ -49,6 +49,7 @@ ibmcloud_plugins=( \
   key-protect \
   power-iaas \
   schematics \
+  tg \
 )
 for plugin in "${ibmcloud_plugins[@]}"
 do
