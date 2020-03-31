@@ -44,7 +44,6 @@ ibmcloud_plugins=( \
   cloud-object-storage \
   container-registry \
   container-service \
-  dev \
   vpc-infrastructure \
   key-protect \
   power-iaas \
