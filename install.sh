@@ -14,10 +14,9 @@ function get_latest {
 }
 
 # NVM for Node.JS
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 source /root/.nvm/nvm.sh
 nvm install 12
-nvm install 6.9.1
 npm install -g nodemon
 
 # Serverless
