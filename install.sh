@@ -13,6 +13,17 @@ function get_latest {
   fi
 }
 
+function get_most_recent_matching {
+  releases=$(curl -H "Authorization: token $GITHUB_TOKEN" --silent "https://api.github.com/repos/$1/releases")
+  most_recent_matching=$(echo -E $releases | jq -r '.[] | .assets | .[] | select(.browser_download_url | test("'$2'")) | .browser_download_url' | head -n 1)
+  if [ ! -z "$most_recent_matching" ]; then
+    echo $most_recent_matching
+  else
+    echo "Failed to get $1: $releases"
+    exit 2
+  fi
+}
+
 # NVM for Node.JS
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 source /root/.nvm/nvm.sh
@@ -112,12 +123,12 @@ echo ">> terraform provider"
 mkdir -p /root/.terraform.d/plugins/linux_amd64
 
 echo ">>> 0.29.0"
-curl -LO https://github.com/IBM-Cloud/terraform-provider-ibm/releases/download/v0.29.0/linux_amd64.zip
+curl -LO $(get_most_recent_matching "IBM-Cloud/terraform-provider-ibm" ".*v0.*linux_amd64.*")
 unzip linux_amd64.zip -d /root/.terraform.d/plugins/linux_amd64
 rm -f linux_amd64.zip
 
-echo ">>> latest"
-curl -LO $(get_latest "IBM-Cloud/terraform-provider-ibm" linux_amd64)
+echo ">>> latest (1.x)"
+curl -LO $(get_most_recent_matching "IBM-Cloud/terraform-provider-ibm" ".*v1.*linux_amd64.*")
 unzip linux_amd64.zip -d /root/.terraform.d/plugins/linux_amd64
 rm -f linux_amd64.zip
 
