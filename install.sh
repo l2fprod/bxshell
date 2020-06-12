@@ -102,7 +102,7 @@ chmod +x /usr/local/bin/stern
 
 # Istio
 echo ">> istio"
-curl -LO $(get_latest "istio/istio" "istio-(.*)linux-amd64.tar.gz$")
+curl -LO $(get_most_recent_matching "istio/istio" "istio-(.*)linux-amd64.tar.gz$")
 tar zxvf istio-*.tar.gz
 rm -f istio-*.tar.gz
 mv istio-* /usr/local/
