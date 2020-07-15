@@ -11,4 +11,5 @@ alias cf='bx cf'
 alias wsk='bx wsk'
 # split window with activation poll on top
 alias tmuxwsk="tmux new-session \; send-keys 'wsk activation poll' C-m \; split-window -v \;"
+alias tfgraph='BLAST_RADIUS_PORT=8080 blast-radius --serve .'
 alias ic=ibmcloud
