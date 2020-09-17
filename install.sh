@@ -47,6 +47,7 @@ rm /tmp/bxinstall.sh
 # IBM Cloud CLI plugins
 echo ">> ibmcloud plugins"
 ibmcloud_plugins=( \
+  code-engine \
   cloud-databases \
   cloud-dns-services \
   cloud-functions \
