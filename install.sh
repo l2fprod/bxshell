@@ -164,6 +164,11 @@ mkdir /root/mnt/config/container-service
 ln -s /root/mnt/config/container-service/config.json /root/.bluemix/plugins/container-service/config.json
 ln -s /root/mnt/config/container-service/clusters /root/.bluemix/plugins/container-service/clusters
 
+# IBM Cloud code-engine
+mkdir /root/mnt/config/code-engine
+rm -f /root/.bluemix/plugins/code-engine/config.json
+ln -s /root/mnt/config/code-engine/config.json /root/.bluemix/plugins/code-engine/config.json
+
 # IBM Cloud vpc-infrastructure
 rm -f /root/.bluemix/plugins/vpc-infrastructure/config.json
 mkdir /root/mnt/config/vpc-infrastructure
