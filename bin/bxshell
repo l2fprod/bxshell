@@ -101,6 +101,7 @@ function run_persistent_container() {
   mkdir -p $CONFIG_DIR/helm
   mkdir -p $CONFIG_DIR/docker
   mkdir -p $CONFIG_DIR/softlayer
+  mkdir -p $CONFIG_DIR/code-engine
 
   RELATIVE_DIR=$(relpath "$PWD" "$HOME")
   if [[ "$RELATIVE_DIR" == .* ]];
