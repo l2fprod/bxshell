@@ -17,9 +17,6 @@ $reset\
 \n\
 \w> "
 
-# Bluemix CLI
-bx plugin repo-add Bluemix https://plugins.ng.bluemix.net
-
 # Auto completion
 . /usr/local/ibmcloud/autocomplete/bash_autocomplete
 source <(kubectl completion bash)

@@ -40,7 +40,7 @@ pip install softlayer
 
 # IBM Cloud CLI
 echo ">> ibmcloud"
-curl -fsSL https://clis.ng.bluemix.net/install/linux > /tmp/bxinstall.sh
+curl -fsSL https://clis.cloud.ibm.com/install/linux > /tmp/bxinstall.sh
 sh /tmp/bxinstall.sh
 rm /tmp/bxinstall.sh
 
@@ -69,12 +69,11 @@ done
 ibmcloud cf install -v 6.51.0 --force
 
 # OpenShift CLI
-echo ">> openshift client tools"
-curl -LO $(get_latest "openshift/origin" openshift-origin-client-tools.*linux-64bit)
-tar zxvf openshift-origin*.tar.gz
-mv openshift-origin-*/oc /usr/local/bin/oc
-mv openshift-origin-*/kubectl /usr/local/bin/ockubectl
-rm -rf openshift-origin-*
+echo ">> openshift 4.x client tools"
+curl -LO https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/stable/openshift-client-linux.tar.gz
+tar zxvf openshift-client-linux.tar.gz
+mv oc /usr/local/bin/oc
+rm -rf README.md kubectl openshift-client-linux.tar.gz
 
 # Kubernetes
 echo ">> kubectl"
