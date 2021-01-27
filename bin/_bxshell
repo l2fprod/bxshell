@@ -1,0 +1,8 @@
+#compdef bxshell
+local -a environment_list subcmds
+
+environment_list=($(ls ~/.bxshell/environments 2>/dev/null))
+
+subcmds=('-l:do not pull latest image' '-t:run without an environment')
+_describe 'command' subcmds
+_values 'environments' ${environment_list}
