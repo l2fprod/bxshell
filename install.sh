@@ -27,12 +27,8 @@ function get_most_recent_matching {
 # NVM for Node.JS
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 source /root/.nvm/nvm.sh
-nvm install 12
+nvm install 14
 npm install -g nodemon
-
-# Serverless
-echo ">> serverless"
-npm install -g serverless serverless-openwhisk@latest --unsafe-perm spawn-sync
 
 # SoftLayer
 echo ">> softlayer"
