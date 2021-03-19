@@ -115,20 +115,6 @@ chmod +x /usr/local/bin/knctl
 echo ">> helm"
 curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
 
-# IBM provider for Terraform
-echo ">> terraform provider"
-mkdir -p /root/.terraform.d/plugins/linux_amd64
-
-echo ">>> 0.29.0"
-curl -LO $(get_most_recent_matching "IBM-Cloud/terraform-provider-ibm" ".*v0.*linux_amd64.*")
-unzip linux_amd64.zip -d /root/.terraform.d/plugins/linux_amd64
-rm -f linux_amd64.zip
-
-echo ">>> latest (1.x)"
-curl -LO $(get_most_recent_matching "IBM-Cloud/terraform-provider-ibm" ".*v1.*linux_amd64.*")
-unzip linux_amd64.zip -d /root/.terraform.d/plugins/linux_amd64
-rm -f linux_amd64.zip
-
 # Expose configuration to be overriden
 mkdir -p /root/mnt/config
 
