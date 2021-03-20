@@ -62,7 +62,7 @@ for plugin in "${ibmcloud_plugins[@]}"
 do
   ibmcloud plugin install $plugin -f -r "IBM Cloud"
 done
-ibmcloud cf install -v 6.51.0 --force
+ibmcloud cf install --force
 
 # OpenShift CLI
 echo ">> openshift 4.x client tools"
