@@ -17,7 +17,7 @@
 
 * Docker Engine
 
-> Tested on macOS Sierra 10.12.6 with Docker Version 17.12.0-ce-mac49 (21995)
+> Tested on macOS Big Sur with Docker Engine - Community 20.10.5
 
 ## Install
 
@@ -111,33 +111,6 @@ Under `$HOME/.bxshell/environments/<env_name>` you can create a `.env_profile` f
 This is my configuration for iTerm 2:
 ![text](iterm-preferences-text.png)
 
-### Using X11 apps on macOS
-
-If you want to run the IBM Cloud Functions shell `fsh`, you will need a X11 server.
-
-1. Install [XQuartz](https://www.xquartz.org/index.html) X11 server
-
-   ```
-   brew cask install xquartz
-   ```
-
-1. Start XQuartz
-
-1. In XQuartz shell, enable connection on a local IP address accessible by the Docker engine. It can be any IP address or hostname visible from the bxshell container. Here it uses the hostname on the host computer:
-
-   ```
-   echo $HOSTNAME
-   xhost + $HOSTNAME
-   ```
-
-1. Start bxshell and from the shell, export DISPLAY to the host running XQuartz:
-
-   ```
-   export DISPLAY=ip-address_or_hostname:0
-   ```
-
-1. Start your X11 app, it should open on your Mac desktop
-
 ## Tools included in bxshell
 
 The exact list can be found by looking at the [installation script](install.sh).
@@ -150,11 +123,11 @@ The exact list can be found by looking at the [installation script](install.sh).
 * jq
 * kubectl
 * kubetail
-* node.js 6.9.1
+* node.js
 * nodemon
 * nvm
 * serverless framework and plugin
-* terraform
+* tfswitch
 * wget
 * yarn
 
