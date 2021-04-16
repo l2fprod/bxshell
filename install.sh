@@ -112,8 +112,8 @@ mv knctl* /usr/local/bin/knctl
 chmod +x /usr/local/bin/knctl
 
 # Helm
-echo ">> helm"
-curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
+echo ">> helm 3"
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
 # Expose configuration to be overriden
 mkdir -p /root/mnt/config
