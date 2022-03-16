@@ -64,7 +64,9 @@ function pull_latest_image() {
 # restore this directory when running in the container
 # if not under $HOME, then default to home in the container
 function relpath() {
-  if which python > /dev/null; then
+  if which python3 > /dev/null; then
+    python3 -c "import os,sys;print(os.path.relpath(*(sys.argv[1:])))" "$@";
+  elif which python > /dev/null; then
     python -c "import os,sys;print(os.path.relpath(*(sys.argv[1:])))" "$@";
   else
     echo "."
