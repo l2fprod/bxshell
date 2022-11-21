@@ -91,11 +91,13 @@ tar zxvf kail*linux*.tar.gz -C kail
 mv kail/kail /usr/local/bin/kail
 rm -rf kail kail*linux*.tar.gz
 
-# stern https://github.com/wercker/stern
+# stern https://github.com/stern/stern
 echo ">> stern"
-curl -LO $(get_latest "wercker/stern" linux_amd64)
-mv stern_linux_amd64 /usr/local/bin/stern
-chmod +x /usr/local/bin/stern
+curl -LO $(get_latest "stern/stern" linux_amd64)
+mkdir stern
+tar zxvf stern*.tar.gz -C stern
+mv stern/stern /usr/local/bin/stern
+rm -rf stern stern*.tar.gz
 
 # Istio
 echo ">> istio"
