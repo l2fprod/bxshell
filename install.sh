@@ -85,7 +85,7 @@ chmod +x /usr/local/bin/kubetail
 
 # Kail https://github.com/boz/kail
 echo ">> kail"
-curl -LO $(get_latest "boz/kail" linux_amd64)
+curl -LO $(get_latest "boz/kail" linux_amd64.tar.gz)
 mkdir kail
 tar zxvf kail*linux*.tar.gz -C kail
 mv kail/kail /usr/local/bin/kail
