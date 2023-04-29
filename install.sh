@@ -43,6 +43,7 @@ rm /tmp/bxinstall.sh
 # IBM Cloud CLI plugins
 echo ">> ibmcloud plugins"
 ibmcloud_plugins=( \
+  catalogs-management \
   code-engine \
   cloud-databases \
   cloud-dns-services \
@@ -62,7 +63,6 @@ for plugin in "${ibmcloud_plugins[@]}"
 do
   ibmcloud plugin install $plugin -f -r "IBM Cloud"
 done
-ibmcloud cf install --force
 
 # OpenShift CLI
 echo ">> openshift 4.x client tools"
