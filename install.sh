@@ -54,6 +54,7 @@ ibmcloud_plugins=( \
   container-service \
   vpc-infrastructure \
   key-protect \
+  project \
   power-iaas \
   schematics \
   tg \
