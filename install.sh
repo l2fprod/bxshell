@@ -57,6 +57,7 @@ ibmcloud_plugins=( \
   project \
   power-iaas \
   schematics \
+  sl \
   tg \
   tke \
 )
