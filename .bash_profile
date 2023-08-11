@@ -9,9 +9,7 @@ bxshell[\
 $bold\
 (\$BXSHELL_TARGET) \
 g:\$(cat ~/.bluemix/config.json | jq .ResourceGroup.Name -r) > \
-r:\$(cat ~/.bluemix/config.json | jq .Region -r) > \
-o:\$(cat ~/.bluemix/.cf/config.json | jq .OrganizationFields.Name -r) > \
-s:\$(cat ~/.bluemix/.cf/config.json | jq .SpaceFields.Name -r)\
+r:\$(cat ~/.bluemix/config.json | jq .Region -r)\
 $reset\
 ]\
 \n\

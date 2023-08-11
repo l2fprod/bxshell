@@ -4,8 +4,6 @@
     "/opt/support/powerline-shell/segments/region.py",
     "/opt/support/powerline-shell/segments/resource_group.py",
     "/opt/support/powerline-shell/segments/kubectl_context.py",
-    "/opt/support/powerline-shell/segments/cf_org.py",
-    "/opt/support/powerline-shell/segments/cf_space.py",
     "newline",
     "/opt/support/powerline-shell/segments/plain_cwd.py",
     "set_term_title"

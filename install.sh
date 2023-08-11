@@ -127,11 +127,6 @@ rm /root/.bluemix/config.json
 touch /root/mnt/config/bx-config.json
 ln -s /root/mnt/config/bx-config.json /root/.bluemix/config.json
 
-# IBM Cloud CF configuration
-rm /root/.bluemix/.cf/config.json
-touch /root/mnt/config/cf-config.json
-ln -s /root/mnt/config/cf-config.json /root/.bluemix/.cf/config.json
-
 # IBM Cloud Cloud Functions configuration
 touch /root/mnt/config/wsk.props
 ln -s /root/mnt/config/wsk.props /root/.wskprops
