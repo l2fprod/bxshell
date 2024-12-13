@@ -115,22 +115,6 @@ This is my configuration for iTerm 2:
 
 The exact list can be found by looking at the [installation script](install.sh).
 
-* IBM Cloud CLI and cloud-functions, functions shell, container-registry, container-service, dev, plugins
-* cURL
-* docker
-* helm
-* istio
-* jq
-* kubectl
-* kubetail
-* node.js
-* nodemon
-* nvm
-* serverless framework and plugin
-* tfswitch
-* wget
-* yarn
-
 ---
 
 The program is provided as-is with no warranties of any kind, express or implied.

@@ -47,7 +47,6 @@ ibmcloud_plugins=( \
   code-engine \
   cloud-databases \
   cloud-dns-services \
-  cloud-functions \
   cloud-internet-services \
   cloud-object-storage \
   container-registry \
@@ -130,11 +129,6 @@ ln -s /root/mnt/config/bx-config.json /root/.bluemix/config.json
 # IBM Cloud Cloud Functions configuration
 touch /root/mnt/config/wsk.props
 ln -s /root/mnt/config/wsk.props /root/.wskprops
-
-rm -f /root/.bluemix/plugins/cloud-functions/config.json
-mkdir /root/mnt/config/cloud-functions
-touch /root/mnt/config/cloud-functions/config.json
-ln -s /root/mnt/config/cloud-functions/config.json /root/.bluemix/plugins/cloud-functions/config.json
 
 # IBM Cloud container-registry
 mkdir /root/mnt/config/container-registry
